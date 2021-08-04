@@ -16,12 +16,11 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
     <div id="icon-themes" class="icon32"></div>
-    <h2>koality.io server settings</h2>
+    <h2>koality.io Server Monitoring Settings</h2>
 
     <p style="max-width: 800px">
-        Thank you for installing the koality.io WordPress plugin. To activate the monitoring
-        please activate the plugin within koality.io and enter the API secret you can find on
-        this page.
+        koality.io is able to monitoring importing server metrics. On this page you ware able to set the settings
+        for this monitoring.
     </p>
 
     <?php settings_errors(); ?>

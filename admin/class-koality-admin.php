@@ -111,7 +111,7 @@ class Koality_Admin
         add_menu_page($this->plugin_name, 'koality.io', 'administrator', $this->plugin_name, array($this, 'displayPluginAdminDashboard'), 'dashicons-chart-area', 26);
 
         //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Server Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
+        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Server Monitoring', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
 
         //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
         // add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Business Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
@@ -120,7 +120,7 @@ class Koality_Admin
 
     public function displayKoalitySettings()
     {
-        $partialName = 'partials/' . $this->plugin_name . '-settings-display.php';
+        $partialName = 'partials/' . $this->plugin_name . '-settings-server-display.php';
         require_once $partialName;
     }
 

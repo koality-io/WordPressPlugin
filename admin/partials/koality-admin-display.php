@@ -17,7 +17,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
     <div id="icon-themes" class="icon32"></div>
-    <h2>koality.io server settings</h2>
+    <h2>koality.io Monitoring</h2>
 
     <p style="max-width: 800px">
         Thank you for installing the koality.io WordPress plugin. To activate the monitoring

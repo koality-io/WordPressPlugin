@@ -31,7 +31,11 @@ class Koality_Activator
      */
     public static function activate()
     {
-        add_option(Koality::OPTION_API_KEY, self::createGuid());
+        if (!get_option(Koality::OPTION_API_KEY)) {
+            add_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
+        } else {
+            update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
+        }
     }
 
     private static function createGuid()

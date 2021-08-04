@@ -24,5 +24,5 @@
         this page.
     </p>
 
-    <input readonly="readonly" type="text" value="<?php echo get_option(Koality::OPTION_API_KEY); ?>">
+    <input readonly="readonly" type="text" value="<?php echo get_option(Koality::OPTION_API_KEY); ?>" style="width: 350px; margin-top: 30px">
 </div>

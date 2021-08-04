@@ -54,6 +54,7 @@ class Koality_Admin
         $this->plugin_name = $plugin_name;
         $this->version = $version;
 
+        add_action('admin_init', array($this, 'registerAndBuildFields'));
     }
 
     /**
@@ -110,12 +111,115 @@ class Koality_Admin
         add_menu_page($this->plugin_name, 'koality.io', 'administrator', $this->plugin_name, array($this, 'displayPluginAdminDashboard'), 'dashicons-chart-area', 26);
 
         //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
+        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Server Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
+
+        //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+        // add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Business Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
+
     }
 
     public function displayKoalitySettings()
     {
-        $partialName = 'partials/'.$this->plugin_name.'-settings-display.php';
+        $partialName = 'partials/' . $this->plugin_name . '-settings-display.php';
         require_once $partialName;
+    }
+
+    public function displayPluginAdminDashboard()
+    {
+        $partialName = 'partials/' . $this->plugin_name . '-admin-display.php';
+        require_once $partialName;
+    }
+
+    public function registerAndBuildFields()
+    {
+        /**
+         * First, we add_settings_section. This is necessary since all future settings must belong to one.
+         * Second, add_settings_field
+         * Third, register_setting
+         */
+        add_settings_section(
+        // ID used to identify this section and with which to register options
+            'koality_general_section',
+            // Title to be displayed on the administration page
+            '',
+            // Callback used to render the description of the section
+            null,
+            // Page on which to add this section of options
+            'koality_general_settings'
+        );
+
+       $this->addSettings();
+    }
+
+    private function addSettings()
+    {
+        $this->addSetting(Koality::CONFIG_SERVER_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
+    }
+
+    private function addSetting($identifier, $label, $required = 'true', $args = []) {
+
+        $defaultArgs =   [
+            'type' => 'input',
+            'subtype' => 'number',
+            'id' =>  $identifier,
+            'name' =>  $identifier,
+            'required' => $required,
+            'get_options_list' => '',
+            'value_type' => 'normal',
+            'wp_data' => 'option'
+        ];
+
+        $fullArgs = array_merge($defaultArgs, $args);
+
+        add_settings_field(
+            $identifier,
+            $label,
+            array($this, 'koality_render_settings_field'),
+            'koality_general_settings',
+            'koality_general_section',
+            $fullArgs
+        );
+
+        register_setting(
+            'koality_general_settings',
+            $identifier
+        );
+    }
+
+    public function koality_render_settings_field($args)
+    {
+        if ($args['wp_data'] == 'option') {
+            $wp_data_value = get_option($args['name']);
+        } elseif ($args['wp_data'] == 'post_meta') {
+            $wp_data_value = get_post_meta($args['post_id'], $args['name'], true);
+        }
+
+        switch ($args['type']) {
+
+            case 'input':
+                $value = ($args['value_type'] == 'serialized') ? serialize($wp_data_value) : $wp_data_value;
+                if ($args['subtype'] != 'checkbox') {
+                    $prependStart = (isset($args['prepend_value'])) ? '<div class="input-prepend"> <span class="add-on">' . $args['prepend_value'] . '</span>' : '';
+                    $prependEnd = (isset($args['prepend_value'])) ? '</div>' : '';
+                    $step = (isset($args['step'])) ? 'step="' . $args['step'] . '"' : '';
+                    $min = (isset($args['min'])) ? 'min="' . $args['min'] . '"' : '';
+                    $max = (isset($args['max'])) ? 'max="' . $args['max'] . '"' : '';
+                    if (isset($args['disabled'])) {
+                        // hide the actual input bc if it was just a disabled input the informaiton saved in the database would be wrong - bc it would pass empty values and wipe the actual information
+                        echo $prependStart . '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '_disabled" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '_disabled" size="40" disabled value="' . esc_attr($value) . '" /><input type="hidden" id="' . $args['id'] . '" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                    } else {
+                        echo $prependStart . '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '" "' . $args['required'] . '" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                    }
+                    /*<input required="required" '.$disabled.' type="number" step="any" id="'.$this->plugin_name.'_cost2" name="'.$this->plugin_name.'_cost2" value="' . esc_attr( $cost ) . '" size="25" /><input type="hidden" id="'.$this->plugin_name.'_cost" step="any" name="'.$this->plugin_name.'_cost" value="' . esc_attr( $cost ) . '" />*/
+
+                } else {
+                    $checked = ($value) ? 'checked' : '';
+                    echo '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '" "' . $args['required'] . '" name="' . $args['name'] . '" size="40" value="1" ' . $checked . ' />';
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
     }
 }

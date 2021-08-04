@@ -1,0 +1,17 @@
+{
+  "name": "koalityio/wordpress",
+  "description": "A expendable health check framework for PHP",
+  "authors": [
+    {
+      "name": "Nils Langner",
+      "email": "nils.langner@leankoala.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.0.0",
+    "leankoala/healthfoundation": "dev-master"
+  },
+  "license": "MIT"
+}

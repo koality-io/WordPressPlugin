@@ -1,6 +1,9 @@
 <?php
 
+use Leankoala\HealthFoundation\HealthFoundation;
+
 require_once(__DIR__ . '/../../../../wp-config.php');
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 $wp->init();
 $wp->parse_request();
@@ -29,3 +32,5 @@ if (!$apiKey || $apiKey == 'off') {
     ];
     die(json_encode($result, JSON_PRETTY_PRINT));
 }
+
+$foundation = new HealthFoundation();

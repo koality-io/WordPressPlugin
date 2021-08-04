@@ -33,6 +33,7 @@ class Koality_Activator
     {
         if (!get_option(Koality::OPTION_API_KEY)) {
             add_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
+            add_option(Koality::CONFIG_SERVER_SPACE_KEY, Koality::CONFIG_SERVER_SPACE_VALUE, '', 'no');
         } else {
             update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
         }

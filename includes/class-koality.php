@@ -31,6 +31,9 @@ class Koality {
 
     const OPTION_API_KEY = 'koality_api_key';
 
+    const CONFIG_SERVER_SPACE_KEY = 'koality_server_space';
+    const CONFIG_SERVER_SPACE_VALUE = 95;
+
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.

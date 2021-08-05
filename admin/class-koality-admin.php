@@ -22,6 +22,7 @@
  */
 class Koality_Admin
 {
+    private $knownSections = [];
 
     /**
      * The ID of this plugin.
@@ -111,16 +112,22 @@ class Koality_Admin
         add_menu_page($this->plugin_name, 'koality.io', 'administrator', $this->plugin_name, array($this, 'displayPluginAdminDashboard'), 'dashicons-chart-area', 26);
 
         //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Server Monitoring', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
+        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'System Monitoring', 'administrator', $this->plugin_name . '-settings-server', array($this, 'displayServerSettings'));
 
         //add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-        // add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'Business Settings', 'administrator', $this->plugin_name . '-settings', array($this, 'displayKoalitySettings'));
-
+        add_submenu_page($this->plugin_name, 'Plugin Name Settings', 'WooCommerce Monitoring', 'administrator', $this->plugin_name . '-settings-woocommerce', array($this, 'displayWooCommerceSettings'));
     }
 
-    public function displayKoalitySettings()
+    public function displayServerSettings()
     {
         $partialName = 'partials/' . $this->plugin_name . '-settings-server-display.php';
+        require_once $partialName;
+    }
+
+
+    public function displayWooCommerceSettings()
+    {
+        $partialName = 'partials/' . $this->plugin_name . '-settings-woocommerce-display.php';
         require_once $partialName;
     }
 
@@ -132,37 +139,54 @@ class Koality_Admin
 
     public function registerAndBuildFields()
     {
-        /**
-         * First, we add_settings_section. This is necessary since all future settings must belong to one.
-         * Second, add_settings_field
-         * Third, register_setting
-         */
-        add_settings_section(
-        // ID used to identify this section and with which to register options
-            'koality_general_section',
-            // Title to be displayed on the administration page
-            '',
-            // Callback used to render the description of the section
-            null,
-            // Page on which to add this section of options
-            'koality_general_settings'
-        );
+        $this->addSettings();
+    }
 
-       $this->addSettings();
+    private function addSection($identifier, $page, $title = '', $description = '')
+    {
+        if (!array_key_exists($page, $this->knownSections) || !array_key_exists($identifier, $this->knownSections[$page])) {
+            add_settings_section(
+            // ID used to identify this section and with which to register options
+                $identifier,
+                // Title to be displayed on the administration page
+                $title,
+                // Callback used to render the description of the section
+                function () use ($description) {
+                    echo $description;
+                },
+                // Page on which to add this section of options
+                $page
+            );
+
+            $this->knownSections[$page][$identifier] = true;
+        }
     }
 
     private function addSettings()
     {
-        $this->addSetting(Koality::CONFIG_SERVER_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
+        $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Rush hour handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
+        $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
+
+
+        // Server settings
+        $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
+        $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
+
+        // WooCommerce settings
+        $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, 'Peak sales start (24h)', 'false', ['min' => 0, 'max' => 24]);
+        $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, 'Peak sales end (24h)', 'false', ['min' => 0, 'max' => 24]);
+        $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_KEY, 'Minimum orders per hour (peak sales)', 'false', ['min' => 0]);
     }
 
-    private function addSetting($identifier, $label, $required = 'true', $args = []) {
+    private function addSetting($page, $section, $identifier, $label, $required = 'true', $args = [])
+    {
+        $this->addSection($section, $page);
 
-        $defaultArgs =   [
+        $defaultArgs = [
             'type' => 'input',
             'subtype' => 'number',
-            'id' =>  $identifier,
-            'name' =>  $identifier,
+            'id' => $identifier,
+            'name' => $identifier,
             'required' => $required,
             'get_options_list' => '',
             'value_type' => 'normal',
@@ -175,13 +199,13 @@ class Koality_Admin
             $identifier,
             $label,
             array($this, 'koality_render_settings_field'),
-            'koality_general_settings',
-            'koality_general_section',
+            $page,
+            $section,
             $fullArgs
         );
 
         register_setting(
-            'koality_general_settings',
+            $page,
             $identifier
         );
     }

@@ -16,7 +16,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
     <div id="icon-themes" class="icon32"></div>
-    <h2>koality.io Server Monitoring Settings</h2>
+    <h2>koality.io WooCommerce Monitoring Settings</h2>
 
     <p style="max-width: 800px">
         koality.io is able to monitoring importing server metrics. On this page you ware able to set the settings
@@ -26,8 +26,8 @@
     <?php settings_errors(); ?>
     <form method="POST" action="options.php">
         <?php
-        settings_fields( 'koality_server_settings' );
-        do_settings_sections( 'koality_server_settings' );
+        settings_fields( 'koality_woocommerce_settings' );
+        do_settings_sections( 'koality_woocommerce_settings' );
         ?>
         <?php submit_button(); ?>
     </form>

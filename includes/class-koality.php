@@ -31,8 +31,20 @@ class Koality {
 
     const OPTION_API_KEY = 'koality_api_key';
 
-    const CONFIG_SERVER_SPACE_KEY = 'koality_server_space';
-    const CONFIG_SERVER_SPACE_VALUE = 95;
+    const CONFIG_SYSTEM_SPACE_KEY = 'koality_system_space';
+    const CONFIG_SYSTEM_SPACE_VALUE = 95;
+
+    const CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY = 'koality_system_plugins_outdated';
+    const CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE = 0;
+
+    const CONFIG_WOOCOMMERCE_ORDER_KEY = 'koality_woocommerce_order_per_hour';
+    const CONFIG_WOOCOMMERCE_ORDER_VALUE = 0;
+
+    const CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY = 'koality_woocommerce_rush_hour_start';
+    const CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE = 9;
+
+    const CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY = 'koality_woocommerce_rush_hour_end';
+    const CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE = 17;
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power

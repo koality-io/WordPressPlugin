@@ -33,7 +33,11 @@ class Koality_Activator
     {
         if (!get_option(Koality::OPTION_API_KEY)) {
             add_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
-            add_option(Koality::CONFIG_SERVER_SPACE_KEY, Koality::CONFIG_SERVER_SPACE_VALUE, '', 'no');
+            add_option(Koality::CONFIG_SYSTEM_SPACE_KEY, Koality::CONFIG_SYSTEM_SPACE_VALUE, '', 'no');
+            add_option(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE, '', 'no');
+            add_option(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE, '', 'no');
+            add_option(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE, '', 'no');
+            add_option(Koality::CONFIG_WOOCOMMERCE_ORDER_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_VALUE, '', 'no');
         } else {
             update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
         }

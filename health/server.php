@@ -12,7 +12,7 @@ $uploadDir = wp_upload_dir()['basedir'];
 
 // max disc usage 95%
 $spaceUsedCheck = new SpaceUsedCheck();
-$spaceUsedCheck->init(get_option(Koality::CONFIG_SERVER_SPACE_KEY), $uploadDir);
+$spaceUsedCheck->init(get_option(Koality::CONFIG_SYSTEM_SPACE_KEY), $uploadDir);
 
 $foundation->registerCheck(
     $spaceUsedCheck,

@@ -162,7 +162,7 @@ class Koality_Admin
     private function addSettings()
     {
         // Sections with description
-        $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Rush hour handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
+        $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Peak sales handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
 
         // Server settings

@@ -43,6 +43,7 @@ class WooCommerceOrderCheck implements Check
 
         $result->setLimit($limit);
         $result->setMetric($orderCount, 'orders');
+        $result->setObservedValuePrecision(0);
 
         return $result;
     }

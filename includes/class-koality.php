@@ -37,8 +37,11 @@ class Koality {
     const CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY = 'koality_system_plugins_outdated';
     const CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE = 0;
 
-    const CONFIG_WOOCOMMERCE_ORDER_KEY = 'koality_woocommerce_order_per_hour';
-    const CONFIG_WOOCOMMERCE_ORDER_VALUE = 0;
+    const CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY = 'koality_woocommerce_order_per_hour_peak';
+    const CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE = 0;
+
+    const CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY = 'koality_woocommerce_order_per_hour_off_peak';
+    const CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE = 0;
 
     const CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY = 'koality_woocommerce_rush_hour_start';
     const CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE = 9;

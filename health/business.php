@@ -15,7 +15,8 @@ $runResult = $foundation->runHealthCheck();
 
 $formatter = new KoalityFormat(
     'WooCommerce business metrics look good.',
-    'WooCommerce business metrics indicate problems.'
+    'WooCommerce business metrics indicate problems.',
+    $dataProtection
 );
 
 $formatter->handle(

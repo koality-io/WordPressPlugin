@@ -31,6 +31,9 @@ class Koality {
 
     const OPTION_API_KEY = 'koality_api_key';
 
+    const CONFIG_DATA_PROTECTION_KEY = 'koality_data_protection';
+    const CONFIG_DATA_PROTECTION_VALUE = 0;
+
     const CONFIG_SYSTEM_SPACE_KEY = 'koality_system_space';
     const CONFIG_SYSTEM_SPACE_VALUE = 95;
 

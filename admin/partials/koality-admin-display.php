@@ -25,6 +25,16 @@
         this page.
     </p>
 
-    <input readonly="readonly" type="text" value="<?php echo get_option(Koality::OPTION_API_KEY); ?>" style="width: 350px; margin-top: 30px">
+    <input readonly="readonly" type="text" value="<?php echo get_option(Koality::OPTION_API_KEY); ?>" style="width: 350px; margin-top: 30px; margin-bottom: 50px">
+
+
+    <?php settings_errors(); ?>
+    <form method="POST" action="options.php">
+        <?php
+        settings_fields( 'koality_general_settings' );
+        do_settings_sections( 'koality_general_settings' );
+        ?>
+        <?php submit_button(); ?>
+    </form>
 
 </div>

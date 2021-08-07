@@ -34,3 +34,5 @@ if (!$apiKey || $apiKey == 'off') {
 }
 
 $foundation = new HealthFoundation();
+
+$dataProtection = (bool)get_option(Koality::CONFIG_DATA_PROTECTION_KEY);

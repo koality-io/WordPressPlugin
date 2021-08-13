@@ -43,6 +43,9 @@ class Koality {
     const CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY = 'koality_woocommerce_order_per_hour_peak';
     const CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE = 0;
 
+    const CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY = 'koality_wordpress_plugins_outdated';
+    const CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE = 0;
+
     const CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY = 'koality_woocommerce_order_per_hour_off_peak';
     const CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE = 0;
 

@@ -170,7 +170,7 @@ class Koality_Admin
         $this->addSetting('koality_general_settings', 'koality_general_section', Koality::CONFIG_DATA_PROTECTION_KEY, 'Hide detailed data', 'false', ['subtype' => 'checkbox']);
 
         // Server settings
-        $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
+        $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
 
         // WooCommerce settings

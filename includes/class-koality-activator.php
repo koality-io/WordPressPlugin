@@ -39,6 +39,7 @@ class Koality_Activator
             add_option(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE, '', 'no');
             add_option(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE, '', 'no');
             add_option(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE, '', 'no');
+            add_option(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE, '', 'no');
             add_option(Koality::CONFIG_DATA_PROTECTION_KEY, Koality::CONFIG_DATA_PROTECTION_VALUE, '', 'no');
         } else {
             update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');

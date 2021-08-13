@@ -53,7 +53,7 @@ class WooCommerceOrderCheck implements Check
      */
     public function getIdentifier()
     {
-        return 'WordPressOrderCheck';
+        return 'WooCommerceOrderCheck';
     }
 
     /**

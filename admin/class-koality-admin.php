@@ -165,12 +165,17 @@ class Koality_Admin
         $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Peak sales handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
         $this->addSection('koality_general_section', 'koality_general_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
+        $this->addSection('koality_system_section', 'koality_server_settings', 'System Settings', 'System settings take care of the WooCommerce and the WordPress system.');
+        $this->addSection('koality_general_section', 'koality_server_settings', 'Server Settings', 'Server settings help to monitor the server the WordPress system is installed on.');
 
         // General settings
         $this->addSetting('koality_general_settings', 'koality_general_section', Koality::CONFIG_DATA_PROTECTION_KEY, 'Hide detailed data', 'false', ['subtype' => 'checkbox']);
 
+        // System settings
+        $this->addSetting('koality_server_settings', 'koality_system_section', Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, 'Consider outdated WordPress versions as insecure.', 'false', ['subtype' => 'checkbox']);
+        $this->addSetting('koality_server_settings', 'koality_system_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
+
         // Server settings
-        $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
 
         // WooCommerce settings
@@ -178,7 +183,6 @@ class Koality_Admin
         $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, 'Peak sales end (24h)', 'false', ['min' => 0, 'max' => 24]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, 'Minimum orders per hour (peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, 'Minimum orders per hour (off-peak sales)', 'false', ['min' => 0]);
-
     }
 
     private function addSetting($page, $section, $identifier, $label, $required = 'true', $args = [])

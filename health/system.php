@@ -1,10 +1,13 @@
 <?php
 
 use Leankoala\HealthFoundation\Check\Device\SpaceUsedCheck;
+use Leankoala\HealthFoundation\Check\Result;
 use Leankoala\HealthFoundation\HealthFoundation;
 use Leankoala\HealthFoundation\Result\Format\Koality\KoalityFormat;
 
 include 'init.php';
+
+include_once __DIR__ . '/Check/WordPressInsecure.php';
 
 /** @var HealthFoundation $foundation */
 
@@ -18,6 +21,8 @@ $foundation->registerCheck(
     $spaceUsedCheck,
     'space_used_check',
     'Space used on storage server');
+
+$foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE);
 
 $runResult = $foundation->runHealthCheck();
 

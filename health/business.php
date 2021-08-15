@@ -24,7 +24,7 @@ $spaceUsedCheck->init(get_option(Koality::CONFIG_SYSTEM_SPACE_KEY), $uploadDir);
 
 $foundation->registerCheck(
     $spaceUsedCheck,
-    'space_used_check',
+    Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED,
     'Space used on storage server');
 
 $foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE);

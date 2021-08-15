@@ -37,7 +37,8 @@ class WooCommerceProductsNumberCheck implements Check
         }
 
         $result->setLimit($limit);
-        $result->setMetric($productCount, 'products', MetricAwareResult::LIMIT_TYPE_MIN);
+        $result->setMetric($productCount, 'products', MetricAwareResult::METRIC_TYPE_NUMERIC);
+        $result->setLimitType(Result::LIMIT_TYPE_MIN);
         $result->setObservedValuePrecision(0);
 
         return $result;

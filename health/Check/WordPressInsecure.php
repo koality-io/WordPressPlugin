@@ -57,7 +57,7 @@ class WordPressInsecure implements Check
 
         $result->setLimitType(Result::LIMIT_TYPE_MIN);
         $result->setLimit(1);
-        $result->setMetric($isFail ? 0 : 1, 'plugins', MetricAwareResult::METRIC_TYPE_PERCENT);
+        $result->setMetric($isFail ? 0 : 1, 'updates', MetricAwareResult::METRIC_TYPE_PERCENT);
         $result->setObservedValuePrecision(0);
 
         return $result;

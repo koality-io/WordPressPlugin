@@ -49,6 +49,9 @@ class Koality {
     const CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY = 'koality_wordpress_system_insecure_outdated';
     const CONFIG_WORDPRESS_INSECURE_OUTDATED_VALUE = 0;
 
+    const CONFIG_WORDPRESS_ADMIN_COUNT_KEY = 'koality_wordpress_system_admin_count';
+    const CONFIG_WORDPRESS_ADMIN_COUNT_VALUE = 0;
+
     const CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY = 'koality_wordpress_plugins_outdated';
     const CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE = 0;
 

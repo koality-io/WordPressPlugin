@@ -175,6 +175,8 @@ class Koality_Admin
         // System settings
         $this->addSetting('koality_server_settings', 'koality_system_section', Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, 'Consider outdated WordPress versions as insecure', 'false', ['subtype' => 'checkbox']);
         $this->addSetting('koality_server_settings', 'koality_system_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
+        $this->addSetting('koality_server_settings', 'koality_system_section', Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, 'Maximum number of administrators (users)', 'false', ['min' => 0]);
+
 
         // Server settings
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
@@ -185,7 +187,6 @@ class Koality_Admin
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, 'Minimum orders per hour (peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, 'Minimum orders per hour (off-peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, 'Minimum number of products', 'false', ['min' => 0]);
-
     }
 
     private function addSetting($page, $section, $identifier, $label, $required = 'true', $args = [])

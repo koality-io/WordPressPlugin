@@ -51,6 +51,8 @@ class Koality_Activator
             add_option(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_VALUE, '', 'no');
             add_option(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE, '', 'no');
             add_option(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE, '', 'no');
+            add_option(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, Koality::CONFIG_WORDPRESS_ADMIN_COUNT_VALUE, '', 'no');
+
         } else {
             update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
         }

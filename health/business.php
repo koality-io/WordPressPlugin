@@ -16,8 +16,8 @@ include_once __DIR__ . '/Check/WordPressInsecure.php';
 
 /** @var HealthFoundation $foundation */
 
-$foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW);
-$foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT);
+$foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'business');
+$foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'business');
 
 $runResult = $foundation->runHealthCheck();
 

@@ -31,7 +31,7 @@ class WordPressAdminUserCount implements Check
         } else {
             $result = new MetricAwareResult(
                 Result::STATUS_PASS,
-                'The number of administrator accounts in within the limit'
+                'The number of administrator accounts is within the limit'
             );
         }
 

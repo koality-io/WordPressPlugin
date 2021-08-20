@@ -27,7 +27,7 @@ $foundation->registerCheck(
     $spaceUsedCheck,
     Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED,
     'Space used on storage server',
-    'server');
+    'group_server');
 
 $foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE, '', 'group_security');
 

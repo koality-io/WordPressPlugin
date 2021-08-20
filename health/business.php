@@ -1,6 +1,5 @@
 <?php
 
-use Leankoala\HealthFoundation\Check\Device\SpaceUsedCheck;
 use Leankoala\HealthFoundation\Check\Result;
 use Leankoala\HealthFoundation\HealthFoundation;
 use Leankoala\HealthFoundation\Result\Format\Koality\KoalityFormat;

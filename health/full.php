@@ -23,17 +23,18 @@ $uploadDir = wp_upload_dir()['basedir'];
 $spaceUsedCheck = new SpaceUsedCheck();
 $spaceUsedCheck->init(get_option(Koality::CONFIG_SYSTEM_SPACE_KEY), $uploadDir);
 
-$foundation->registerCheck(
-    $spaceUsedCheck,
-    Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED,
-    'Space used on storage server',
-    'plugins.groups.server');
+// Business
+if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+    $foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'plugins.groups.business');
+    $foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'plugins.groups.business');
+}
 
+// Server
+$foundation->registerCheck($spaceUsedCheck, Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED, '', 'plugins.groups.server');
+
+// Security
 $foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE, '', 'plugins.groups.security');
-
-$foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'plugins.groups.business');
-$foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'plugins.groups.business');
-$foundation->registerCheck(new WordPressPlugins(), Result::KOALITY_IDENTIFIER_PLUGINS_UPDATABLE,'', 'plugins.groups.security');
+$foundation->registerCheck(new WordPressPlugins(), Result::KOALITY_IDENTIFIER_PLUGINS_UPDATABLE, '', 'plugins.groups.security');
 $foundation->registerCheck(new WordPressAdminUserCount(), Result::KOALITY_IDENTIFIER_SECURITY_USERS_ADMIN_COUNT, '', 'plugins.groups.security');
 
 $runResult = $foundation->runHealthCheck();

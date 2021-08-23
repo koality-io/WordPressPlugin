@@ -37,7 +37,7 @@ jobs:
 
       - name: Create ZIP file
         run: |
-          zip -r WordPressPlugin.zip .
+          zip -r koality.zip .
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2

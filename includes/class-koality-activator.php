@@ -31,30 +31,33 @@ class Koality_Activator
      */
     public static function activate()
     {
-        if (!get_option(Koality::OPTION_API_KEY)) {
-            add_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
+        self::addSetting(Koality::OPTION_API_KEY, self::createGuid());
+        self::addSetting(Koality::CONFIG_DATA_PROTECTION_KEY, Koality::CONFIG_DATA_PROTECTION_VALUE);
+        self::addSetting(Koality::CONFIG_SYSTEM_SPACE_KEY, Koality::CONFIG_SYSTEM_SPACE_VALUE);
 
-            // Global
-            add_option(Koality::CONFIG_DATA_PROTECTION_KEY, Koality::CONFIG_DATA_PROTECTION_VALUE, '', 'no');
+        self::addSetting(Koality::CONFIG_DATA_PROTECTION_KEY, Koality::CONFIG_DATA_PROTECTION_VALUE);
 
-            // Server
-            add_option(Koality::CONFIG_SYSTEM_SPACE_KEY, Koality::CONFIG_SYSTEM_SPACE_VALUE, '', 'no');
+        // Server
+        self::addSetting(Koality::CONFIG_SYSTEM_SPACE_KEY, Koality::CONFIG_SYSTEM_SPACE_VALUE);
 
-            // WooCommerce
-            add_option(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_VALUE, '', 'no');
+        // WooCommerce
+        self::addSetting(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE);
+        self::addSetting(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE);
+        self::addSetting(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE);
+        self::addSetting(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE);
+        self::addSetting(Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_VALUE);
 
-            // WordPress
-            add_option(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_VALUE, '', 'no');
-            add_option(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE, '', 'no');
-            add_option(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, Koality::CONFIG_WORDPRESS_ADMIN_COUNT_VALUE, '', 'no');
+        // WordPress
+        self::addSetting(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_VALUE);
+        self::addSetting(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE);
+        self::addSetting(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE);
+        self::addSetting(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, Koality::CONFIG_WORDPRESS_ADMIN_COUNT_VALUE);
+    }
 
-        } else {
-            update_option(Koality::OPTION_API_KEY, self::createGuid(), '', 'no');
+    private static function addSetting($key, $value)
+    {
+        if (!get_option($key)) {
+            add_option($key, $value, '', 'no');
         }
     }
 

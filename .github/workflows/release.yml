@@ -30,6 +30,8 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v6
+        with:
+          command: update
 
       - name: Remove GIT files
         run: |

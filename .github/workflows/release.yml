@@ -3,14 +3,14 @@
 
 name: Create ZIP file
 
-#on:
-#  release:
-#    types: [ created, updated, push ]
-
 on:
-  push:
-    branches:
-      - '**'
+  release:
+    types: [ created ]
+
+#on:
+#  push:
+#    branches:
+#      - '**'
 
 jobs:
   build:

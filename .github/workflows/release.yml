@@ -33,7 +33,7 @@ jobs:
 
       - name: Remove GIT files
         run: |
-          rm -rf .git .github
+          rm -rf .git .github output.log docker_tag DOCKER_ENV
 
       - name: Create ZIP file
         run: |

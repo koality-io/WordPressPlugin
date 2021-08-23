@@ -58,6 +58,10 @@ class Koality_Activator
     {
         if (!get_option($key)) {
             add_option($key, $value, '', 'no');
+        } else {
+            if ($key == Koality::OPTION_API_KEY) {
+                update_option($key, $value, '', 'no');
+            }
         }
     }
 

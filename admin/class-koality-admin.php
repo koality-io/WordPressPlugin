@@ -57,7 +57,7 @@ class Koality_Admin
 
         add_action('admin_init', array($this, 'registerAndBuildFields'));
 
-        add_action('wp_dashboard_setup', array($this, 'initDashboardWidgets'));
+        // add_action('wp_dashboard_setup', array($this, 'initDashboardWidgets'));
     }
 
     function initDashboardWidgets()
@@ -188,8 +188,7 @@ class Koality_Admin
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
         $this->addSection('koality_general_section', 'koality_general_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
         $this->addSection('koality_security_section', 'koality_security_settings', 'Security Settings', 'System settings take care of the WooCommerce and the WordPress system.');
-        $this->addSection('koality_server_logfile_section', 'koality_server_settings', 'Log file analysis', 'System settings take care of the WooCommerce and the WordPress system.');
-
+        // $this->addSection('koality_server_logfile_section', 'koality_server_settings', 'Log file analysis', 'System settings take care of the WooCommerce and the WordPress system.');
 
         // General settings
         $this->addSetting('koality_general_settings', 'koality_general_section', Koality::CONFIG_DATA_PROTECTION_KEY, 'Hide detailed data', 'false', ['subtype' => 'checkbox']);
@@ -201,7 +200,7 @@ class Koality_Admin
 
         // Server settings
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
-        $this->addSetting('koality_server_settings', 'koality_server_logfile_section', Koality::CONFIG_WORDPRESS_LOGFILE_ERROR_COUNT_KEY, 'Maximum log errors per hour', 'false', ['min' => 0]);
+        // $this->addSetting('koality_server_settings', 'koality_server_logfile_section', Koality::CONFIG_WORDPRESS_LOGFILE_ERROR_COUNT_KEY, 'Maximum log errors per hour', 'false', ['min' => 0]);
 
         // WooCommerce settings
         $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, 'Peak sales start (24h)', 'false', ['min' => 0, 'max' => 24]);

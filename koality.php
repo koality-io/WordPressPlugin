@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       koality.io
  * Plugin URI:        https://www.koality.io
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
  * Version:           1.0.0
  * Author:            Nils Langner
  * Author URI:        https://www.koality.io

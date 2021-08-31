@@ -21,7 +21,7 @@ class WordPressAdminUserCount implements Check
     {
         $adminCount = $this->getAdministratorCount();
 
-        $maxAdmin = (int)get_option(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY);
+        $maxAdmin = (int)get_option(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY);
 
         if ($adminCount > $maxAdmin) {
             $result = new MetricAwareResult(

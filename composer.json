@@ -14,5 +14,10 @@
     "leankoala/healthfoundation": "dev-master",
     "ext-json": "*"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Koality\\WordPressPlugin\\": "src"
+    }
+  }
 }

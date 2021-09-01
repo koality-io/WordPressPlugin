@@ -1,5 +1,8 @@
 <?php
 
+namespace Koality\WordPressPlugin\Checks;
+
+use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;
 use Leankoala\HealthFoundation\Check\MetricAwareResult;
 use Leankoala\HealthFoundation\Check\Result;
@@ -63,7 +66,7 @@ class WooCommerceOrderCheck implements Check
      */
     private function getLastHourOrderCount()
     {
-        $query = new WC_Order_Query(array(
+        $query = new \WC_Order_Query(array(
             'date_created' => '>' . (time() - HOUR_IN_SECONDS),
             'return' => 'ids',
         ));

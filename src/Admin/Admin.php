@@ -1,5 +1,9 @@
 <?php
 
+namespace Koality\WordPressPlugin\Admin;
+
+use Koality\WordPressPlugin\Koality;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,7 +24,7 @@
  * @subpackage Koality/admin
  * @author     Nils Langner <Nils.langner@leankoala.com>
  */
-class Koality_Admin
+class Admin
 {
     private $knownSections = [];
 
@@ -134,26 +138,22 @@ class Koality_Admin
 
     public function displayServerSettings()
     {
-        $partialName = 'partials/' . $this->plugin_name . '-settings-server-display.php';
-        require_once $partialName;
+        require_once 'partials/settings-server.php';
     }
 
     public function displayWooCommerceSettings()
     {
-        $partialName = 'partials/' . $this->plugin_name . '-settings-woocommerce-display.php';
-        require_once $partialName;
+        require_once 'partials/settings-woocommerce.php';
     }
 
     public function displaySecuritySettings()
     {
-        $partialName = 'partials/' . $this->plugin_name . '-settings-security-display.php';
-        require_once $partialName;
+        require_once 'partials/settings-security.php';
     }
 
     public function displayPluginAdminDashboard()
     {
-        $partialName = 'partials/' . $this->plugin_name . '-admin-display.php';
-        require_once $partialName;
+        require_once 'partials/general.php';
     }
 
     public function registerAndBuildFields()
@@ -171,7 +171,7 @@ class Koality_Admin
                 $title,
                 // Callback used to render the description of the section
                 function () use ($description) {
-                    echo $description;
+                    echo esc_attr($description);
                 },
                 // Page on which to add this section of options
                 $page
@@ -255,22 +255,21 @@ class Koality_Admin
             case 'input':
                 $value = ($args['value_type'] == 'serialized') ? serialize($wp_data_value) : $wp_data_value;
                 if ($args['subtype'] != 'checkbox') {
-                    $prependStart = (isset($args['prepend_value'])) ? '<div class="input-prepend"> <span class="add-on">' . $args['prepend_value'] . '</span>' : '';
+                    $prependStart = (isset($args['prepend_value'])) ? '<div class="input-prepend"> <span class="add-on">' . esc_attr($args['prepend_value']) . '</span>' : '';
                     $prependEnd = (isset($args['prepend_value'])) ? '</div>' : '';
                     $step = (isset($args['step'])) ? 'step="' . $args['step'] . '"' : '';
                     $min = (isset($args['min'])) ? 'min="' . $args['min'] . '"' : '';
                     $max = (isset($args['max'])) ? 'max="' . $args['max'] . '"' : '';
                     if (isset($args['disabled'])) {
-                        // hide the actual input bc if it was just a disabled input the informaiton saved in the database would be wrong - bc it would pass empty values and wipe the actual information
-                        echo $prependStart . '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '_disabled" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '_disabled" size="40" disabled value="' . esc_attr($value) . '" /><input type="hidden" id="' . $args['id'] . '" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                        // hide the actual input bc if it was just a disabled input the information saved in the database would be wrong - bc it would pass empty values and wipe the actual information
+                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '_disabled" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '_disabled" size="40" disabled value="' . esc_attr($value) . '" /><input type="hidden" id="' . esc_attr($args['id']) . '" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
                     } else {
-                        echo $prependStart . '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '" "' . $args['required'] . '" ' . $step . ' ' . $max . ' ' . $min . ' name="' . $args['name'] . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '" "' . esc_attr($args['required']) . '" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
                     }
-                    /*<input required="required" '.$disabled.' type="number" step="any" id="'.$this->plugin_name.'_cost2" name="'.$this->plugin_name.'_cost2" value="' . esc_attr( $cost ) . '" size="25" /><input type="hidden" id="'.$this->plugin_name.'_cost" step="any" name="'.$this->plugin_name.'_cost" value="' . esc_attr( $cost ) . '" />*/
 
                 } else {
                     $checked = ($value) ? 'checked' : '';
-                    echo '<input type="' . $args['subtype'] . '" id="' . $args['id'] . '" "' . $args['required'] . '" name="' . $args['name'] . '" size="40" value="1" ' . $checked . ' />';
+                    echo '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '" "' . esc_attr($args['required']) . '" name="' . esc_attr($args['name']) . '" size="40" value="1" ' . esc_attr($checked) . ' />';
                 }
                 break;
             default:

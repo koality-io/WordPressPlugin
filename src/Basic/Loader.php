@@ -1,5 +1,7 @@
 <?php
 
+namespace Koality\WordPressPlugin\Basic;
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -21,7 +23,7 @@
  * @subpackage Koality/includes
  * @author     Nils Langner <Nils.langner@leankoala.com>
  */
-class Koality_Loader {
+class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

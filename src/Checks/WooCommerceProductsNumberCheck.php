@@ -1,5 +1,8 @@
 <?php
 
+namespace Koality\WordPressPlugin\Checks;
+
+use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;
 use Leankoala\HealthFoundation\Check\MetricAwareResult;
 use Leankoala\HealthFoundation\Check\Result;
@@ -61,7 +64,7 @@ class WooCommerceProductsNumberCheck implements Check
     {
         $args = array('post_type' => 'product', 'post_status' => 'publish',
             'posts_per_page' => -1);
-        $products = new WP_Query($args);
+        $products = new \WP_Query($args);
         return $products->found_posts;
     }
 }

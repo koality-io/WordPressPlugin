@@ -14,8 +14,8 @@ $scores = [
 <table>
     <?php foreach ($scores as $key => $score): ?>
         <tr>
-            <td width="200px"><?php echo $key ?></td>
-            <td><?php echo $score ?> / 100</td>
+            <td width="200px"><?php echo strip_tags($key) ?></td>
+            <td><?php echo strip_tags($score) ?> / 100</td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -1,5 +1,7 @@
 <?php
 
+namespace Koality\WordPressPlugin\Basic;
+
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +26,7 @@
  * @subpackage Koality/includes
  * @author     Nils Langner <Nils.langner@leankoala.com>
  */
-class Koality_i18n {
+class I18n {
 
 
 	/**

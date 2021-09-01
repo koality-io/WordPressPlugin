@@ -1,5 +1,8 @@
 <?php
 
+namespace Koality\WordPressPlugin\Checks;
+
+use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;
 use Leankoala\HealthFoundation\Check\MetricAwareResult;
 use Leankoala\HealthFoundation\Check\Result;

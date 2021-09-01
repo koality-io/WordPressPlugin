@@ -1,5 +1,9 @@
 <?php
 
+namespace Koality\WordPressPlugin\Basic;
+
+use Koality\WordPressPlugin\Koality;
+
 /**
  * Fired during plugin activation
  *
@@ -20,7 +24,7 @@
  * @subpackage Koality/includes
  * @author     Nils Langner <Nils.langner@leankoala.com>
  */
-class Koality_Activator
+class Activator
 {
     /**
      * Short Description. (use period)

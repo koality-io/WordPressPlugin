@@ -1,5 +1,8 @@
 <?php
 
+namespace Koality\WordPressPlugin\Checks;
+
+use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;
 use Leankoala\HealthFoundation\Check\MetricAwareResult;
 use Leankoala\HealthFoundation\Check\Result;
@@ -46,8 +49,6 @@ class WordPressPlugins implements Check
         $result->setLimit($limit);
         $result->setMetric(count($plugins), 'plugins');
         $result->setObservedValuePrecision(0);
-
-        // $result->addAttribute('plugins', $plugins);
 
         return $result;
     }

@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+include_once __DIR__ . '/vendor/autoload.php';
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
@@ -42,8 +44,7 @@ define( 'KOALITY_VERSION', '1.0.0' );
  * This action is documented in includes/class-koality-activator.php
  */
 function activate_koality() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-koality-activator.php';
-	Koality_Activator::activate();
+	\Koality\WordPressPlugin\Basic\Activator::activate();
 }
 
 /**
@@ -51,18 +52,12 @@ function activate_koality() {
  * This action is documented in includes/class-koality-deactivator.php
  */
 function deactivate_koality() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-koality-deactivator.php';
-	Koality_Deactivator::deactivate();
+	\Koality\WordPressPlugin\Basic\Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_koality' );
 register_deactivation_hook( __FILE__, 'deactivate_koality' );
 
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-koality.php';
 
 /**
  * Begins execution of the plugin.
@@ -75,8 +70,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-koality.php';
  */
 function run_koality() {
 
-	$plugin = new Koality();
+	$plugin = new \Koality\WordPressPlugin\Koality();
 	$plugin->run();
 
+    // register hooks
+    $healthEndpoint = new \Koality\WordPressPlugin\Rest\Health();
+    $healthEndpoint->addHooks();
 }
+
 run_koality();

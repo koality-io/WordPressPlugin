@@ -1,14 +1,8 @@
 <?php
 
-/**
- * Fired during plugin deactivation
- *
- * @link       https://www.koality.io
- * @since      1.0.0
- *
- * @package    Koality
- * @subpackage Koality/includes
- */
+namespace Koality\WordPressPlugin\Basic;
+
+use Koality\WordPressPlugin\Koality;
 
 /**
  * Fired during plugin deactivation.
@@ -20,9 +14,8 @@
  * @subpackage Koality/includes
  * @author     Nils Langner <Nils.langner@leankoala.com>
  */
-class Koality_Deactivator
+class Deactivator
 {
-
     /**
      * Short Description. (use period)
      *

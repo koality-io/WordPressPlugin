@@ -5,7 +5,6 @@ namespace Koality\WordPressPlugin\Rest;
 use Koality\WordPressPlugin\Checks\WooCommerceOrderCheck;
 use Koality\WordPressPlugin\Checks\WooCommerceProductsNumberCheck;
 use Koality\WordPressPlugin\Checks\WordPressAdminUserCount;
-use Koality\WordPressPlugin\Checks\WordPressCommentsPending;
 use Koality\WordPressPlugin\Checks\WordPressInsecure;
 use Koality\WordPressPlugin\Checks\WordPressPlugins;
 use Koality\WordPressPlugin\Koality;

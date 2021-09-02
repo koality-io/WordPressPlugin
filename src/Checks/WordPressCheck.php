@@ -14,10 +14,10 @@ use Leankoala\HealthFoundation\Check\Check;
  */
 interface WordPressCheck extends Check
 {
-    const GROUP_SECURITY = 'group.security';
-    const GROUP_CONTENT = 'group.content';
-    const GROUP_SYSTEM = 'group.system';
-    const GROUP_SERVER = 'group.server';
+    const GROUP_SECURITY = 'groups.security';
+    const GROUP_CONTENT = 'groups.content';
+    const GROUP_SYSTEM = 'groups.system';
+    const GROUP_SERVER = 'groups.server';
 
     /**
      * Return the WordPress internal settings key.

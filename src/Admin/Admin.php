@@ -27,8 +27,6 @@ use Koality\WordPressPlugin\Koality;
  */
 class Admin
 {
-    const PAGE_CONTENT = 'koality_content_settings';
-
     private $knownSections = [];
 
     /**

@@ -12,11 +12,13 @@
     <p>
         <a href="https://www.koality.io/en/support/en/support/install/wordpress" target="_blank" class="hide-if-no-js page-title-action">Read
            the installation guide</a>
+        <a href="https://www.koality.io" target="_blank" class="hide-if-no-js page-title-action">Visit koality.io</a>
     </p>
 
+    <h3 style="margin-top: 50px">API key</h3>
     <input readonly="readonly" type="text" value="<?php use Koality\WordPressPlugin\Koality;
 
-    echo esc_attr(get_option(Koality::OPTION_API_KEY)); ?>" style="width: 350px; margin-top: 30px; margin-bottom: 50px">
+    echo esc_attr(get_option(Koality::OPTION_API_KEY)); ?>" style="width: 350px; margin-top: 0px; margin-bottom: 50px">
 
 
     <?php settings_errors(); ?>

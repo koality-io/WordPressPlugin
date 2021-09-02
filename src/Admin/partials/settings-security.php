@@ -19,7 +19,7 @@
     <h2>koality.io Security Monitoring Settings</h2>
 
     <p style="max-width: 800px">
-        koality.io is able to monitoring importing server metrics. On this page you ware able to set the settings
+        koality.io is able to monitoring importing security metrics. On this page you are able to set the settings
         for this monitoring.
     </p>
 

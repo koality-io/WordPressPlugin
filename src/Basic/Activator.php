@@ -56,6 +56,12 @@ class Activator
         self::addSetting(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE);
         self::addSetting(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_VALUE);
         self::addSetting(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, Koality::CONFIG_WORDPRESS_ADMIN_COUNT_VALUE);
+
+        $container = Koality::getWordPressChecks();
+
+        foreach ($container->getChecks() as $check) {
+            self::addSetting($check->getConfigKey(), $check->getConfigDefaultValue());
+        }
     }
 
     private static function addSetting($key, $value)

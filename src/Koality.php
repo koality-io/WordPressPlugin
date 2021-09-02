@@ -5,6 +5,8 @@ namespace Koality\WordPressPlugin;
 use Koality\WordPressPlugin\Admin\Admin;
 use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
+use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
+use Koality\WordPressPlugin\Checks\WordPressCommentsPendingCheck;
 
 /**
  * The file that defines the core plugin class
@@ -217,6 +219,15 @@ class Koality
     public function get_version()
     {
         return $this->version;
+    }
+
+    public static function getWordPressChecks()
+    {
+        $container = new WordPressCheckContainer();
+
+        $container->addWordPressCheck(new WordPressCommentsPendingCheck());
+
+        return $container;
     }
 
 }

@@ -5,6 +5,7 @@ namespace Koality\WordPressPlugin\Rest;
 use Koality\WordPressPlugin\Checks\WooCommerceOrderCheck;
 use Koality\WordPressPlugin\Checks\WooCommerceProductsNumberCheck;
 use Koality\WordPressPlugin\Checks\WordPressAdminUserCount;
+use Koality\WordPressPlugin\Checks\WordPressCommentsPending;
 use Koality\WordPressPlugin\Checks\WordPressInsecure;
 use Koality\WordPressPlugin\Checks\WordPressPlugins;
 use Koality\WordPressPlugin\Koality;
@@ -69,6 +70,9 @@ class Health
         $spaceUsedCheck = new SpaceUsedCheck();
         $spaceUsedCheck->init(get_option(Koality::CONFIG_SYSTEM_SPACE_KEY), $uploadDir);
 
+        $container = Koality::getWordPressChecks();
+        $container->connect($foundation);
+
         // Business
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             $foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'plugins.groups.business');
@@ -82,6 +86,9 @@ class Health
         $foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE, '', 'plugins.groups.security');
         $foundation->registerCheck(new WordPressPlugins(), Result::KOALITY_IDENTIFIER_PLUGINS_UPDATABLE, '', 'plugins.groups.security');
         $foundation->registerCheck(new WordPressAdminUserCount(), Result::KOALITY_IDENTIFIER_SECURITY_USERS_ADMIN_COUNT, '', 'plugins.groups.security');
+
+        // Content
+        // $foundation->registerCheck(new WordPressCommentsPending(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE, '', 'plugins.groups.security');
 
         $runResult = $foundation->runHealthCheck();
 

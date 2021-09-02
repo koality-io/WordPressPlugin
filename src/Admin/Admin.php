@@ -2,6 +2,7 @@
 
 namespace Koality\WordPressPlugin\Admin;
 
+use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 use Koality\WordPressPlugin\Koality;
 
 /**
@@ -26,6 +27,8 @@ use Koality\WordPressPlugin\Koality;
  */
 class Admin
 {
+    const PAGE_CONTENT = 'koality_content_settings';
+
     private $knownSections = [];
 
     /**
@@ -133,6 +136,7 @@ class Admin
 
         add_submenu_page($this->plugin_name, 'System Monitoring', 'System Monitoring', 'administrator', $this->plugin_name . '-settings-server', array($this, 'displayServerSettings'));
         add_submenu_page($this->plugin_name, 'Security Monitoring', 'Security Monitoring', 'administrator', $this->plugin_name . '-settings-security', array($this, 'displaySecuritySettings'));
+        add_submenu_page($this->plugin_name, 'Content Monitoring', 'Content Monitoring', 'administrator', $this->plugin_name . '-settings-content', array($this, 'displayContentSettings'));
 
     }
 
@@ -151,6 +155,11 @@ class Admin
         require_once 'partials/settings-security.php';
     }
 
+    public function displayContentSettings()
+    {
+        require_once 'partials/settings-content.php';
+    }
+
     public function displayPluginAdminDashboard()
     {
         require_once 'partials/general.php';
@@ -158,7 +167,8 @@ class Admin
 
     public function registerAndBuildFields()
     {
-        $this->addSettings();
+        $checkContainer = Koality::getWordPressChecks();
+        $this->addSettings($checkContainer);
     }
 
     private function addSection($identifier, $page, $title = '', $description = '')
@@ -181,12 +191,14 @@ class Admin
         }
     }
 
-    private function addSettings()
+    private function addSettings(WordPressCheckContainer $checkContainer)
     {
+
         // Sections with description
         $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Peak sales handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
         $this->addSection('koality_general_section', 'koality_general_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
+        // $this->addSection('koality_content_section', 'koality_content_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
         $this->addSection('koality_security_section', 'koality_security_settings', 'Security Settings', 'System settings take care of the WooCommerce and the WordPress system.');
         // $this->addSection('koality_server_logfile_section', 'koality_server_settings', 'Log file analysis', 'System settings take care of the WooCommerce and the WordPress system.');
 
@@ -208,6 +220,10 @@ class Admin
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, 'Minimum orders per hour (peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, 'Minimum orders per hour (off-peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, 'Minimum number of products', 'false', ['min' => 0]);
+
+        foreach ($checkContainer->getSettings() as $setting) {
+            $this->addSetting($setting['page'], $setting['section'], $setting['identifier'], $setting['label'], $setting['required'], $setting['args']);
+        }
     }
 
     private function addSetting($page, $section, $identifier, $label, $required = 'true', $args = [])

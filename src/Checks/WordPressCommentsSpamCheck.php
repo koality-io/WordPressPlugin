@@ -13,19 +13,19 @@ use Leankoala\HealthFoundation\Check\Result;
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05
  */
-class WordPressCommentsPendingCheck extends WordPressBasicCheck
+class WordPressCommentsSpamCheck extends WordPressBasicCheck
 {
-    protected $configKey = 'koality_wordpress_comments_pending';
+    protected $configKey = 'koality_wordpress_comments_spam';
     protected $configDefaultValue = 0;
 
-    protected $resultKey = 'comments.pending';
+    protected $resultKey = 'comments.spam';
 
     protected $group = WordPressCheck::GROUP_CONTENT;
     protected $description = '';
 
     protected $settings = [
         [
-            'label' => 'Maximum number of pending comments',
+            'label' => 'Maximum number of spam comments',
             'required' => true
         ]
     ];
@@ -37,14 +37,14 @@ class WordPressCommentsPendingCheck extends WordPressBasicCheck
     {
         $commentCount = \wp_count_comments();
 
-        $pendingCommentsCount = $commentCount->moderated;
+        $pendingCommentsCount = $commentCount->spam;
 
         $limit = $this->getLimit();
 
         if ($limit < $pendingCommentsCount) {
-            $result = new MetricAwareResult(Result::STATUS_FAIL, 'Too many pending comments.');
+            $result = new MetricAwareResult(Result::STATUS_FAIL, 'Too many spam comments.');
         } else {
-            $result = new MetricAwareResult(Result::STATUS_PASS, 'Not too many pending comments.');
+            $result = new MetricAwareResult(Result::STATUS_PASS, 'Not too many spam comments.');
         }
 
         $result->setLimitType(Result::LIMIT_TYPE_MAX);

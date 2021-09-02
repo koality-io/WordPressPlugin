@@ -7,6 +7,7 @@ use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
 use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 use Koality\WordPressPlugin\Checks\WordPressCommentsPendingCheck;
+use Koality\WordPressPlugin\Checks\WordPressCommentsSpamCheck;
 
 /**
  * The file that defines the core plugin class
@@ -202,7 +203,7 @@ class Koality
     /**
      * The reference to the class that orchestrates the hooks with the plugin.
      *
-     * @return    Koality_Loader    Orchestrates the hooks of the plugin.
+     * @return    Loader    Orchestrates the hooks of the plugin.
      * @since     1.0.0
      */
     public function get_loader()
@@ -226,6 +227,7 @@ class Koality
         $container = new WordPressCheckContainer();
 
         $container->addWordPressCheck(new WordPressCommentsPendingCheck());
+        $container->addWordPressCheck(new WordPressCommentsSpamCheck());
 
         return $container;
     }

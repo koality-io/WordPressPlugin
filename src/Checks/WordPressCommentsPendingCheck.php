@@ -6,10 +6,9 @@ use Leankoala\HealthFoundation\Check\MetricAwareResult;
 use Leankoala\HealthFoundation\Check\Result;
 
 /**
- * Class WordPressOrderCheck
+ * Class WordPressCommentsPendingCheck
  *
- * This check checks if there where enough orders within the last hour in the installed WooCommerce
- * shop.
+ * Check if there are too many pending comments in the system.
  *
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05

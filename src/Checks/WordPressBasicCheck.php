@@ -66,6 +66,15 @@ abstract class WordPressBasicCheck implements WordPressCheck
             case WordPressCheck::GROUP_SERVER:
                 $page = 'koality_server_settings';
                 break;
+            case WordPressCheck::GROUP_CUSTOM:
+                $page = 'koality_custom_settings';
+                break;
+            case WordPressCheck::GROUP_SYSTEM:
+                $page = 'koality_system_settings';
+                break;
+            case WordPressCheck::GROUP_BUSINESS:
+                $page = 'koality_business_settings';
+                break;
             default:
                 $page = 'koality_' . $this->getGroup() . '_settings';
         }

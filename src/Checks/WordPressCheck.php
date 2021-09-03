@@ -18,6 +18,8 @@ interface WordPressCheck extends Check
     const GROUP_CONTENT = 'plugins.groups.content';
     const GROUP_SYSTEM = 'plugins.groups.system';
     const GROUP_SERVER = 'plugins.groups.server';
+    const GROUP_CUSTOM = 'plugins.groups.custom';
+    const GROUP_BUSINESS = 'plugins.groups.business';
 
     /**
      * Return the WordPress internal settings key.

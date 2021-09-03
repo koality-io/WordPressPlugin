@@ -1,6 +1,6 @@
 <?php
 
-namespace Koality\WordPressPlugin\Checks;
+namespace Koality\WordPressPlugin\Checks\WooCommerce;
 
 use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;

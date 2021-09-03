@@ -2,11 +2,11 @@
 
 namespace Koality\WordPressPlugin\Rest;
 
-use Koality\WordPressPlugin\Checks\WooCommerceOrderCheck;
-use Koality\WordPressPlugin\Checks\WooCommerceProductsNumberCheck;
-use Koality\WordPressPlugin\Checks\WordPressAdminUserCount;
-use Koality\WordPressPlugin\Checks\WordPressInsecure;
-use Koality\WordPressPlugin\Checks\WordPressPlugins;
+use Koality\WordPressPlugin\Checks\WooCommerce\WooCommerceOrderCheck;
+use Koality\WordPressPlugin\Checks\WooCommerce\WooCommerceProductsNumberCheck;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressAdminUserCount;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressInsecure;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressPlugins;
 use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Device\SpaceUsedCheck;
 use Leankoala\HealthFoundation\Check\Result;
@@ -89,8 +89,8 @@ class Health
         $runResult = $foundation->runHealthCheck();
 
         $formatter = new KoalityFormat(
-            'WooCommerce business metrics look good.',
-            'WooCommerce business metrics indicate problems.',
+            'WordPress checks look good.',
+            'WordPress checks indicate problems.',
             $dataProtection
         );
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Koality\WordPressPlugin\Checks;
+namespace Koality\WordPressPlugin\Checks\WordPress;
 
 use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundation\Check\Check;
@@ -16,32 +16,38 @@ use Leankoala\HealthFoundation\Check\Result;
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05
  */
-class WooCommerceProductsNumberCheck implements Check
+class WordPressPlugins implements Check
 {
     /**
      * @inheritDoc
      */
     public function run()
     {
-        $productCount = $this->getProductCount();
+        $updatablePlugins = get_plugin_updates();
 
-        $limit = get_option(Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY);
+        $plugins = [];
 
-        if ($limit > $productCount) {
+        foreach ($updatablePlugins as $plugin) {
+            $plugins[] = $plugin->Name;
+        }
+
+        $limit = get_option(Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY);
+
+        if ($limit < count($plugins)) {
             $result = new MetricAwareResult(
                 Result::STATUS_FAIL,
-                'Not enough products in the WooCommerce shop.'
+                'Too many plugins need an update.'
             );
         } else {
             $result = new MetricAwareResult(
                 Result::STATUS_PASS,
-                'Enough products in the WooCommerce shop.'
+                'Not too many plugins need an update.'
             );
         }
 
+        $result->setLimitType(Result::LIMIT_TYPE_MAX);
         $result->setLimit($limit);
-        $result->setMetric($productCount, 'products', MetricAwareResult::METRIC_TYPE_NUMERIC);
-        $result->setLimitType(Result::LIMIT_TYPE_MIN);
+        $result->setMetric(count($plugins), 'plugins');
         $result->setObservedValuePrecision(0);
 
         return $result;
@@ -52,19 +58,6 @@ class WooCommerceProductsNumberCheck implements Check
      */
     public function getIdentifier()
     {
-        return 'WooCommerceOrderCheck';
-    }
-
-    /**
-     * Return the number of published products
-     *
-     * @return int
-     */
-    private function getProductCount()
-    {
-        $args = array('post_type' => 'product', 'post_status' => 'publish',
-            'posts_per_page' => -1);
-        $products = new \WP_Query($args);
-        return $products->found_posts;
+        return 'WordPressPluginsUpdatable';
     }
 }

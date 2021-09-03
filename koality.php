@@ -26,9 +26,14 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+use Koality\WordPressPlugin\Koality;
+use Koality\WordPressPlugin\Rest\Health;
+
+if (!defined('WPINC')) {
+    die;
 }
+
+define('WP_KOALITY_IO', true);
 
 include_once __DIR__ . '/vendor/autoload.php';
 
@@ -37,27 +42,28 @@ include_once __DIR__ . '/vendor/autoload.php';
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'KOALITY_VERSION', '1.0.0' );
+define('KOALITY_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-koality-activator.php
  */
-function activate_koality() {
-	\Koality\WordPressPlugin\Basic\Activator::activate();
+function activate_koality()
+{
+    \Koality\WordPressPlugin\Basic\Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-koality-deactivator.php
  */
-function deactivate_koality() {
-	\Koality\WordPressPlugin\Basic\Deactivator::deactivate();
+function deactivate_koality()
+{
+    \Koality\WordPressPlugin\Basic\Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_koality' );
-register_deactivation_hook( __FILE__, 'deactivate_koality' );
-
+register_activation_hook(__FILE__, 'activate_koality');
+register_deactivation_hook(__FILE__, 'deactivate_koality');
 
 /**
  * Begins execution of the plugin.
@@ -68,13 +74,15 @@ register_deactivation_hook( __FILE__, 'deactivate_koality' );
  *
  * @since    1.0.0
  */
-function run_koality() {
+function run_koality()
+{
+    add_action(Koality::WP_ACTION_INIT_CHECKS, ['Koality\WordPressPlugin\Koality', 'initChecks']);
 
-	$plugin = new \Koality\WordPressPlugin\Koality();
-	$plugin->run();
+    $plugin = new Koality();
+    $plugin->run();
 
     // register hooks
-    $healthEndpoint = new \Koality\WordPressPlugin\Rest\Health();
+    $healthEndpoint = new Health();
     $healthEndpoint->addHooks();
 }
 

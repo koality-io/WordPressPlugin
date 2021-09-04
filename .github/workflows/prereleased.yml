@@ -35,7 +35,7 @@ jobs:
 
       - name: Remove GIT files
         run: |
-          rm -rf .git .github output.log docker_tag DOCKER_ENV
+          sudo rm -rf .git .github output.log docker_tag DOCKER_ENV vendor/symfony/console
 
       - name: Create ZIP file
         run: |

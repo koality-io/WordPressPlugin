@@ -3,9 +3,9 @@
 namespace Koality\WordPressPlugin\Checks\WordPress;
 
 use Koality\WordPressPlugin\Koality;
-use Leankoala\HealthFoundation\Check\Check;
-use Leankoala\HealthFoundation\Check\MetricAwareResult;
-use Leankoala\HealthFoundation\Check\Result;
+use Leankoala\HealthFoundationBase\Check\Check;
+use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
+use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
  * Class WordPressOrderCheck

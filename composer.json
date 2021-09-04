@@ -11,7 +11,8 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.0.0",
-    "leankoala/healthfoundation": "dev-master",
+    "leankoala/healthfoundationbase": "dev-main",
+    "leankoala/healthfoundationchecks": "dev-main",
     "ext-json": "*"
   },
   "license": "MIT",

@@ -2,7 +2,7 @@
 
 namespace Koality\WordPressPlugin\Checks;
 
-use Leankoala\HealthFoundation\Check\Check;
+use Leankoala\HealthFoundationBase\Check\Check;
 
 /**
  * Interface WordPressCheck

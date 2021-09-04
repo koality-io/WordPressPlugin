@@ -8,10 +8,10 @@ use Koality\WordPressPlugin\Checks\WordPress\WordPressAdminUserCount;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressInsecure;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressPlugins;
 use Koality\WordPressPlugin\Koality;
-use Leankoala\HealthFoundation\Check\Device\SpaceUsedCheck;
-use Leankoala\HealthFoundation\Check\Result;
-use Leankoala\HealthFoundation\HealthFoundation;
-use Leankoala\HealthFoundation\Result\Format\Koality\KoalityFormat;
+use Leankoala\HealthFoundationBase\Check\Result;
+use Leankoala\HealthFoundationBase\HealthFoundation;
+use Leankoala\HealthFoundationBase\Result\Format\Koality\KoalityFormat;
+use Leankoala\HealthFoundationChecks\Device\SpaceUsedCheck;
 
 if (!defined('ABSPATH')) {
     exit;

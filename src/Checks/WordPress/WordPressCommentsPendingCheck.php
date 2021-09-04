@@ -4,8 +4,8 @@ namespace Koality\WordPressPlugin\Checks\WordPress;
 
 use Koality\WordPressPlugin\Checks\WordPressBasicCheck;
 use Koality\WordPressPlugin\Checks\WordPressCheck;
-use Leankoala\HealthFoundation\Check\MetricAwareResult;
-use Leankoala\HealthFoundation\Check\Result;
+use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
+use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
  * Class WordPressCommentsPendingCheck

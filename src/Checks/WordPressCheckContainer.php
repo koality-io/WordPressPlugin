@@ -2,7 +2,7 @@
 
 namespace Koality\WordPressPlugin\Checks;
 
-use Leankoala\HealthFoundation\HealthFoundation;
+use Leankoala\HealthFoundationBase\HealthFoundation;
 
 /**
  * Class Container

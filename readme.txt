@@ -1,7 +1,7 @@
 === 360° monitoring (by koality.io) ===
 Plugin URI:        https://github.com/koality-io/WordPressPlugin
 Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
-Version:           1.0.5
+Version:           1.0.6
 Author:            koality.io - a WebPros company
 Author URI:        https://www.koality.io
 License:           GPL-2.0+

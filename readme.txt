@@ -1,9 +1,8 @@
-=== Plugin Name ===
-Plugin Name:       koality.io
+=== 360° monitoring (by koality.io) ===
 Plugin URI:        https://github.com/koality-io/WordPressPlugin
 Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
-Version:           1.0.0
-Author:            Nils Langner
+Version:           1.0.5
+Author:            koality.io - a WebPros company
 Author URI:        https://www.koality.io
 License:           GPL-2.0+
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -54,13 +53,18 @@ This section describes how to install the plugin and get it working.
 
 1. After activating the plugin there appear new menu items in the backend (koality.io). On the main element you will find the API key for koality.io. Please copy this into your clipboard.
 
+
 2. Login into koality.io (monitor.koality.io). If you do not have an account yet use the [registration form](https://monitor.koality.io/?register&lang=en)
 
-3. Chose the project you want to connect to the WordPress plugin. And go to "extras" in the main menu.
+
+3. Choose the project you want to connect to the WordPress plugin. And go to "extras" in the main menu.
+
 
 4. Activate the WordPress plugin. It's free. Afterwards there will be a new menu item "WordPress".
 
+
 5. Switch to the "WordPress" page and click on settings. There you have to enter the API key you copied in step 1.
+
 
 6. Done. From now on koality. io does not only monitor your website from the outside but also from the inside.
 

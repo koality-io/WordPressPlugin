@@ -37,6 +37,13 @@ jobs:
         run: |
           sudo rm -rf .git .github output.log docker_tag DOCKER_ENV vendor/symfony/console
 
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          include: "src/"
+          find: "##KOALITY_VERSION##"
+          replace: $RELEASE
+
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:

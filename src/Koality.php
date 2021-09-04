@@ -34,6 +34,8 @@ use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
  */
 class Koality
 {
+    const VERSION = "##KOALITY_VERSION##";
+
     const WP_ACTION_INIT_CHECKS = 'koality_init_checks';
 
     const OPTION_API_KEY = 'koality_api_key';

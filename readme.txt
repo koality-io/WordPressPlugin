@@ -1,7 +1,7 @@
 === 360° monitoring (by koality.io) ===
 Plugin URI:        https://github.com/koality-io/WordPressPlugin
 Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
-Version:           1.0.6
+Version:           1.0.7
 Author:            koality.io - a WebPros company
 Author URI:        https://www.koality.io
 License:           GPL-2.0+
@@ -69,13 +69,9 @@ This section describes how to install the plugin and get it working.
 6. Done. From now on koality. io does not only monitor your website from the outside but also from the inside.
 
 == Screenshots ==
-
 1. koality.io - The koality.io backend where all data come together.
-
 2. Server Monitoring - Settings in the WordPress backend to configure the server settings.
-
 3. Security Monitoring - Settings in the WordPress backend to configure the security settings.
-
 4. WooCommerce Monitoring -  Settings in the WordPress backend to configure the WooCommerce settings.
 
 == Changelog ==

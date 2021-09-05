@@ -13,6 +13,7 @@
  * @package           Koality
  *
  * @wordpress-plugin
+ * Plugin Name:       360° monitoring (by koality.io)
  * Plugin URI:        https://github.com/koality-io/WordPressPlugin
  * Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
  * Version:           ##KOALITY_VERSION##

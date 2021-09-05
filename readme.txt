@@ -16,9 +16,9 @@ Stable tag:        1.0.0
 
 With the help of koality.io plugin, the WordPress site or WooCommerce store is monitored with [360° monitoring](https://www.koality.io).
 
-**important** this plugin connects WordPress with an existing koality.io account.
+**Important:** this plugin connects WordPress with an existing koality.io account.
 
-# WordPress features
+= WordPress features =
 
 - Server
  - Inform if there is **no space left** on the device.
@@ -32,12 +32,12 @@ With the help of koality.io plugin, the WordPress site or WooCommerce store is m
  - Inform if there are **too many pending comments**
  - Inform if there are **too many spam comments**
 
-# WooCommerce features
+= WooCommerce features =
 
 - Inform if the **number of orders** per hour reaches a critical value
 - Inform if the **number of products** in the shop is too low.
 
-# General Features
+= General Features =
 
 The koality.io basic subscription already includes many monitoring features that will take care of the WordPress or WooCommerce installation. All the checks are done continuously. All these checks are not WordPress specific and can be used for every website.
 
@@ -47,7 +47,7 @@ The koality.io basic subscription already includes many monitoring features that
 - **Content Monitoring** - Checking for dead links and broken images and files.
 - **Security Monitoring** - Monitor HTTPS certificates, cookies, HTTP content on HTTPS pages
 
-# Custom checks
+= Custom checks =
 
 We built the monitoring plugin with a simple idea in mind: everybody should be able to extend the metrics that are collected by its own. That is why koality.io will take all the data that is sent and will create beautiful graphs and statistics of it. It will also alert via email, slack or teams if the metrics do not meet the expectations.
 

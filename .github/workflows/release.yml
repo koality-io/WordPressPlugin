@@ -35,7 +35,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          include: "src/"
+          exclude: "vendor/"
           find: "##KOALITY_VERSION##"
           replace: ${{ steps.get_version.outputs.VERSION }}
 

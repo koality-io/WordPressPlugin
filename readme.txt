@@ -75,6 +75,7 @@ This section describes how to install the plugin and get it working.
 For more information on "[How to install the WordPress plugin](https://www.koality.io/en/support/en/support/install/wordpress)" please visit our website.
 
 == Screenshots ==
+
 1. koality.io - The koality.io backend where all data come together.
 2. Server Monitoring - Settings in the WordPress backend to configure the server settings.
 3. Security Monitoring - Settings in the WordPress backend to configure the security settings.

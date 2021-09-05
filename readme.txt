@@ -21,7 +21,7 @@ With the help of koality.io plugin, the WordPress site or WooCommerce store is m
 # WordPress features
 
 - Server
- - Inform if there is no space left in the device.
+ - Inform if there is **no space left** on the device.
 
 - Security
  - Inform if the installed WordPress version is **outdated or insecure**

@@ -72,6 +72,8 @@ This section describes how to install the plugin and get it working.
 
 6. Done. From now on koality. io does not only monitor your website from the outside but also from the inside.
 
+For more information on "[How to install the WordPress plugin](https://www.koality.io/en/support/en/support/install/wordpress)" please visit our website.
+
 == Screenshots ==
 1. koality.io - The koality.io backend where all data come together.
 2. Server Monitoring - Settings in the WordPress backend to configure the server settings.

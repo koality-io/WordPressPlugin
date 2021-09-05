@@ -29,8 +29,8 @@ With the help of koality.io plugin, the WordPress site or WooCommerce store is m
  - Inform if there are **too many plugins that need an update**
 
 - Content
- - Inform if there are too many pending comments
- - Inform if there are too many spam comments
+ - Inform if there are **too many pending comments**
+ - Inform if there are **too many spam comments**
 
 # WooCommerce features
 
@@ -82,3 +82,6 @@ This section describes how to install the plugin and get it working.
 
 = 1.0.0 =
  Initial version of the koality.io WordPress plugin. It creates data for the koality.io backend and will allow the monitoring tool to alert if any anomalies are found.
+
+= 1.1.0 =
+ Checks for comments. Alerts if there are too many pending comments and too many spam comments.

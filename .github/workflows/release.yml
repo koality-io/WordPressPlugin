@@ -37,7 +37,7 @@ jobs:
         with:
           include: "src/"
           find: "##KOALITY_VERSION##"
-          replace: ${{ RELEASE }}
+          replace: ${{ steps.get_version.outputs.VERSION }}
 
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable

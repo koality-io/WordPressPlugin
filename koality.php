@@ -11,6 +11,20 @@
  * @link              https://www.koality.io
  * @since             1.0.0
  * @package           Koality
+ *
+ * @wordpress-plugin
+ * Plugin URI:        https://github.com/koality-io/WordPressPlugin
+ * Description:       This plugin is used to connect WordPress and WooCommerce with koality.io to then perform important monitoring.
+ * Version:           1.0.9
+ * Author:            koality.io - a WebPros company
+ * Author URI:        https://www.koality.io
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       koality
+ * Domain Path:       /languages
+ * Requires at least: 5.4
+ * Tested up to:      5.8
+ * Stable tag:        1.0.0
  */
 
 // If this file is called directly, abort.
@@ -30,7 +44,7 @@ include_once __DIR__ . '/vendor/autoload.php';
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('KOALITY_VERSION', '1.0.8');
+define('KOALITY_VERSION', '1.0.9');
 
 /**
  * The code that runs during plugin activation.

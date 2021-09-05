@@ -7,11 +7,6 @@ on:
   release:
     types: [ released ]
 
-#on:
-#  push:
-#    branches:
-#      - '**'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +30,7 @@ jobs:
 
       - name: Remove GIT files
         run: |
-          sudo rm -rf .git .github output.log docker_tag DOCKER_ENV vendor/symfony/console
+          sudo rm -rf .git .github output.log docker_tag DOCKER_ENV
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master

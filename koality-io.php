@@ -31,6 +31,7 @@
 // If this file is called directly, abort.
 use Koality\WordPressPlugin\Koality;
 use Koality\WordPressPlugin\Rest\Health;
+use Koality\WordPressPlugin\Rest\Redirect;
 
 if (!defined('WPINC')) {
     die;
@@ -87,6 +88,11 @@ function run_koality()
     // register hooks
     $healthEndpoint = new Health();
     $healthEndpoint->addHooks();
+
+
+    // register hooks
+    $redirectEndpoint = new Redirect();
+    $redirectEndpoint->addHooks();
 }
 
 run_koality();

@@ -2,6 +2,9 @@
 
 namespace Koality\WordPressPlugin\Checks;
 
+use Koality\WordPressPlugin\Rest\Redirect;
+use Leankoala\HealthFoundationBase\Check\Result;
+
 /**
  * Class WordPressOrderCheck
  *
@@ -21,6 +24,9 @@ abstract class WordPressBasicCheck implements WordPressCheck
     protected $configDefaultValue = 0;
 
     protected $settings = [];
+
+    protected $target = false;
+    protected $targetLabel = "";
 
     public function getConfigKey()
     {
@@ -113,4 +119,25 @@ abstract class WordPressBasicCheck implements WordPressCheck
 
         return $limit;
     }
+
+    public function run()
+    {
+        $result = $this->doRun();
+
+        if ($this->target) {
+            try {
+                $url = Redirect::getUrl($this->target);
+                $result->addArrayAttribute(Result::ATTRIBUTE_ACTION_URL, ['url' =>$url, 'label' => $this->targetLabel]);
+            } catch (\Exception $exception) {
+                $result->addAttribute('error', 'No route for target ' . $this->target . ' found.');
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return Result
+     */
+    abstract protected function doRun();
 }

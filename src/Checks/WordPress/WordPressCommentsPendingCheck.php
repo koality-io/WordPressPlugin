@@ -35,7 +35,7 @@ class WordPressCommentsPendingCheck extends WordPressBasicCheck
     /**
      * @inheritDoc
      */
-    public function run()
+    protected function doRun()
     {
         $commentCount = \wp_count_comments();
 

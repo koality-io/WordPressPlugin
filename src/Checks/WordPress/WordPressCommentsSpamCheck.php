@@ -32,10 +32,13 @@ class WordPressCommentsSpamCheck extends WordPressBasicCheck
         ]
     ];
 
+    protected $target = 'comments_spam';
+    protected $targetLabel = 'Go to comments (spame) page';
+
     /**
      * @inheritDoc
      */
-    public function run()
+    protected function doRun()
     {
         $commentCount = \wp_count_comments();
 

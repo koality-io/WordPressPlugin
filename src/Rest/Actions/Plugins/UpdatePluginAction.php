@@ -18,5 +18,8 @@ if (!defined('WP_KOALITY_IO')) {
  */
 class UpdatePluginAction extends BaseAction
 {
+    public function run(\WP_REST_Request $request)
+    {
 
+    }
 }

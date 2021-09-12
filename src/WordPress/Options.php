@@ -1,7 +1,10 @@
 <?php
 
-
 namespace Koality\WordPressPlugin\WordPress;
+
+if (!defined('WP_KOALITY_IO')) {
+    exit;
+}
 
 /**
  * Class Options

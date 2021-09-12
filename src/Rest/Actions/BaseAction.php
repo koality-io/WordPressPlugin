@@ -46,4 +46,17 @@ abstract class BaseAction implements Action
     {
         return true;
     }
+
+    protected function returnSuccess($message)
+    {
+        $data = [
+            'status' => 'success',
+            'message' => $message
+        ];
+
+        $restResponse = new \WP_REST_Response($data, 200);
+        $restResponse->set_headers(['Cache-Control' => 'no-cache']);
+
+        return $restResponse;
+    }
 }

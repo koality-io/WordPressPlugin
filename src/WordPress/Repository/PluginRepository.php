@@ -35,6 +35,16 @@ abstract class PluginRepository
     }
 
     /**
+     * Return all updatable plugins.
+     *
+     * @return array
+     */
+    static public function findUpdatable()
+    {
+        return get_plugin_updates();
+    }
+
+    /**
      * Return true if a plugin with the given identifier exists.
      *
      * @param string $identifier

@@ -8,6 +8,7 @@ use Koality\WordPressPlugin\Koality;
 use Koality\WordPressPlugin\Rest\Actions\Plugins\UpdatePluginAction;
 use Koality\WordPressPlugin\WordPress\Options;
 use Koality\WordPressPlugin\WordPress\Repository\PluginRepository;
+use Leankoala\HealthFoundationBase\Check\Action;
 use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
 use Leankoala\HealthFoundationBase\Check\Result;
 
@@ -72,10 +73,7 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
 
         foreach ($plugins as $key => $pluginName) {
             $plugin = PluginRepository::find($key);
-            $result->addArrayAttribute(
-                Result::ATTRIBUTE_ACTION_URL,
-                ['url' => $updateAction->getActionUrl($plugin), 'label' => 'Update ' . $pluginName, 'type' => 'rest']
-            );
+            $result->addAction(new Action('Update ' . $pluginName, $updateAction->getActionUrl($plugin), Action::TYPE_REST));
         }
 
         return $result;

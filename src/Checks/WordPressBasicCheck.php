@@ -3,6 +3,7 @@
 namespace Koality\WordPressPlugin\Checks;
 
 use Koality\WordPressPlugin\Rest\Redirect;
+use Leankoala\HealthFoundationBase\Check\Action;
 use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
@@ -127,7 +128,7 @@ abstract class WordPressBasicCheck implements WordPressCheck
         if ($this->target) {
             try {
                 $url = Redirect::getUrl($this->target);
-                $result->addArrayAttribute(Result::ATTRIBUTE_ACTION_URL, ['url' =>$url, 'label' => $this->targetLabel]);
+                $result->addAction(new Action($this->targetLabel, $url, Action::TYPE_LINK));
             } catch (\Exception $exception) {
                 $result->addAttribute('error', 'No route for target ' . $this->target . ' found.');
             }

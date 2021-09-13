@@ -16,7 +16,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
     <div id="icon-themes" class="icon32"></div>
-    <h2>koality.io Content Settings</h2>
+    <h2>koality.io Content Monitoring Settings</h2>
 
     <p style="max-width: 800px">
         koality.io is able to monitoring importing content metrics. On this page you are able to set the settings

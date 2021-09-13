@@ -73,7 +73,9 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
 
         foreach ($plugins as $key => $pluginName) {
             $plugin = PluginRepository::find($key);
-            $result->addAction(new Action('Update ' . $pluginName, $updateAction->getActionUrl($plugin), Action::TYPE_REST));
+            $action = new Action('Update ' . $pluginName, $updateAction->getActionUrl($plugin), Action::TYPE_REST);
+            $action->setIdentifier('koality_wordpress_plugin_update');
+            $result->addAction($action);
         }
 
         return $result;

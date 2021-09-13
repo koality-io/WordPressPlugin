@@ -33,7 +33,7 @@ class WordPressCommentsSpamCheck extends WordPressBasicCheck
     ];
 
     protected $target = 'comments_spam';
-    protected $targetLabel = 'Go to comments (spame) page';
+    protected $targetLabel = 'Go to comments (spam) page';
 
     /**
      * @inheritDoc

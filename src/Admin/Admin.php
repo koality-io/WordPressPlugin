@@ -195,7 +195,6 @@ class Admin
         $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Peak sales handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');
         $this->addSection('koality_general_section', 'koality_general_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
-        // $this->addSection('koality_content_section', 'koality_content_settings', 'Data protection', 'If the data protection mode is activated this plugin does not send detailed business information like orders per hour. It will only send the information that the check succeeded.');
         $this->addSection('koality_security_section', 'koality_security_settings', 'Security Settings', 'System settings take care of the WooCommerce and the WordPress system.');
         // $this->addSection('koality_server_logfile_section', 'koality_server_settings', 'Log file analysis', 'System settings take care of the WooCommerce and the WordPress system.');
 
@@ -204,12 +203,11 @@ class Admin
 
         // Security settings
         $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, 'Consider outdated WordPress versions as insecure', 'false', ['subtype' => 'checkbox']);
-        $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
+        // $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
         $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, 'Maximum number of administrators (users)', 'false', ['min' => 0]);
 
         // Server settings
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
-        // $this->addSetting('koality_server_settings', 'koality_server_logfile_section', Koality::CONFIG_WORDPRESS_LOGFILE_ERROR_COUNT_KEY, 'Maximum log errors per hour', 'false', ['min' => 0]);
 
         // WooCommerce settings
         $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, 'Peak sales start (24h)', 'false', ['min' => 0, 'max' => 24]);

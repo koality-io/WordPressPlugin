@@ -32,6 +32,9 @@ class WordPressCommentsPendingCheck extends WordPressBasicCheck
         ]
     ];
 
+    protected $target = 'comments_pending';
+    protected $targetLabel = 'Go to comments (pending) page';
+
     /**
      * @inheritDoc
      */

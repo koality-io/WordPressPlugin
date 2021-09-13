@@ -7,6 +7,7 @@ use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressCommentsPendingCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressCommentsSpamCheck;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressUpdatablePluginsCheck;
 use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 
 /**
@@ -218,6 +219,7 @@ class Koality
     {
         $container->addWordPressCheck(new WordPressCommentsPendingCheck());
         $container->addWordPressCheck(new WordPressCommentsSpamCheck());
+        $container->addWordPressCheck(new WordPressUpdatablePluginsCheck());
     }
 
     public static function getWordPressChecks()

@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koality-io/HealthFoundationBase.git",
-                "reference": "e6dd5b529d041217076716588b731906f873c707"
+                "reference": "2d5314e89f30cbbda0a3592b27379a7497d84956"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koality-io/HealthFoundationBase/zipball/e6dd5b529d041217076716588b731906f873c707",
-                "reference": "e6dd5b529d041217076716588b731906f873c707",
+                "url": "https://api.github.com/repos/koality-io/HealthFoundationBase/zipball/2d5314e89f30cbbda0a3592b27379a7497d84956",
+                "reference": "2d5314e89f30cbbda0a3592b27379a7497d84956",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "issues": "https://github.com/koality-io/HealthFoundationBase/issues",
                 "source": "https://github.com/koality-io/HealthFoundationBase/tree/main"
             },
-            "time": "2021-09-04T08:15:04+00:00"
+            "time": "2021-09-11T05:58:28+00:00"
         },
         {
             "name": "leankoala/healthfoundationchecks",

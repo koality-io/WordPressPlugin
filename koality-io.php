@@ -30,6 +30,7 @@
 
 // If this file is called directly, abort.
 use Koality\WordPressPlugin\Koality;
+use Koality\WordPressPlugin\Rest\Actions\Plugins\UpdatePluginAction;
 use Koality\WordPressPlugin\Rest\Health;
 use Koality\WordPressPlugin\Rest\Redirect;
 
@@ -89,10 +90,12 @@ function run_koality()
     $healthEndpoint = new Health();
     $healthEndpoint->addHooks();
 
-
     // register hooks
     $redirectEndpoint = new Redirect();
     $redirectEndpoint->addHooks();
+
+    $updateAction = new UpdatePluginAction();
+    $updateAction->addActions();
 }
 
 run_koality();

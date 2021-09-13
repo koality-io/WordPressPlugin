@@ -3,6 +3,7 @@
 namespace Koality\WordPressPlugin\Rest\Actions\Plugins;
 
 use Koality\WordPressPlugin\Rest\Actions\BaseAction;
+use Koality\WordPressPlugin\WordPress\Entity\Plugin;
 use Koality\WordPressPlugin\WordPress\Repository\PluginRepository;
 
 if (!defined('WP_KOALITY_IO')) {
@@ -32,9 +33,24 @@ class UpdatePluginAction extends BaseAction
     public function run(\WP_REST_Request $request)
     {
         $pluginIdentifier = $request->get_param(self::ARGUMENT_PLUGIN);
-        $plugin = PluginRepository::find($pluginIdentifier);
-        $plugin->update();
+
+        if (!$pluginIdentifier) {
+            return $this->returnFailure('No plugin with identifier "' . self::ARGUMENT_PLUGIN . '" found.', 'koality_plugin_not_found');
+        }
+
+        try {
+            $plugin = PluginRepository::find($pluginIdentifier);
+        } catch (\Exception $e) {
+            return $this->returnFailure($e->getMessage());
+        }
+
+        // $plugin->update();
 
         return $this->returnSuccess('Plugin successfully updated.');
+    }
+
+    public function getActionUrl(Plugin $plugin)
+    {
+        return $this->getActionBaseUrl() . '&' . self::ARGUMENT_PLUGIN . '=' . $plugin->getIdentifier();
     }
 }

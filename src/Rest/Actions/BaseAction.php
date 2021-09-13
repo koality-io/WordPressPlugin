@@ -2,6 +2,9 @@
 
 namespace Koality\WordPressPlugin\Rest\Actions;
 
+use Koality\WordPressPlugin\Koality;
+use Koality\WordPressPlugin\WordPress\Options;
+
 if (!defined('WP_KOALITY_IO')) {
     exit;
 }
@@ -16,9 +19,11 @@ if (!defined('WP_KOALITY_IO')) {
  */
 abstract class BaseAction implements Action
 {
+    const API_KEY = 'apiKey';
+
     protected $routeMethod = 'GET';
     protected $routeArguments = [];
-    protected $routeNamespace = 'koality-io/v1';
+    protected $routeNamespace = 'koality-io/actions/v1';
     protected $routePath = '';
 
     public function addActions()
@@ -35,16 +40,26 @@ abstract class BaseAction implements Action
                     $this->routeArguments
                 ],
                 'callback' => [$this, 'run'],
-                'permission_callback' => [$this, 'authorize'],
+                'permission_callback' => [$this, 'authorize']
             ]
         );
     }
 
     abstract public function run(\WP_REST_Request $request);
 
-    protected function authorize(\WP_REST_Request $request)
+    public function authorize(\WP_REST_Request $request)
     {
-        return true;
+        $currentApiKey = $request->get_param(self::API_KEY);
+
+        $apiKey = Options::get(Koality::OPTION_API_KEY);
+
+        if (!$apiKey || $apiKey == 'off') {
+            return false;
+        } elseif ($currentApiKey !== $apiKey) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     protected function returnSuccess($message)
@@ -58,5 +73,18 @@ abstract class BaseAction implements Action
         $restResponse->set_headers(['Cache-Control' => 'no-cache']);
 
         return $restResponse;
+    }
+
+
+    protected function returnFailure($message, $error = 'unknown_error')
+    {
+        $restResponse = new \WP_Error($error, $message);
+        return $restResponse;
+    }
+
+    protected function getActionBaseUrl()
+    {
+        $apiKey = Options::get(Koality::OPTION_API_KEY);
+        return get_site_url() . '?rest_route=/' . $this->routeNamespace . '/' . $this->routePath . '&' . self::API_KEY . '=' . $apiKey;
     }
 }

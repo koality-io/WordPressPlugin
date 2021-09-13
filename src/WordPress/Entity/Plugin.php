@@ -25,11 +25,19 @@ class Plugin
     private $identifier;
 
     /**
-     * @param $identifier
+     * @param string $identifier
      */
     public function __construct($identifier)
     {
         $this->identifier = $identifier;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**

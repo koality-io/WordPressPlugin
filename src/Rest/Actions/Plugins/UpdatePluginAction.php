@@ -44,7 +44,7 @@ class UpdatePluginAction extends BaseAction
             return $this->returnFailure($e->getMessage());
         }
 
-        // $plugin->update();
+        $plugin->update();
 
         return $this->returnSuccess('Plugin successfully updated.');
     }

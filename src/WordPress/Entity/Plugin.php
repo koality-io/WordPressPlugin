@@ -10,7 +10,7 @@ if (!defined('WP_KOALITY_IO')) {
 }
 
 include_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
 /**
  * Class Plugin
@@ -74,6 +74,8 @@ class Plugin
         $nonce = 'upgrade-plugin_' . $plugin;
         $url = 'update.php?action=upgrade-plugin&plugin=' . urlencode($plugin);
 
+        $isActive = $this->isActive();
+
         $pluginUpgrader = new \Plugin_Upgrader(new \Automatic_Upgrader_Skin(compact('nonce', 'url', 'plugin')));
         $response = $pluginUpgrader->upgrade($plugin);
 
@@ -82,6 +84,12 @@ class Plugin
             $e->setWpError($response);
             throw  $e;
         }
+
+        if($isActive) {
+            $this->activate();
+        }
+
+        wp_update_plugins();
     }
 
     /**

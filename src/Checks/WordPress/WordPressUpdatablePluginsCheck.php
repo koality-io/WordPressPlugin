@@ -74,7 +74,7 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
             $plugin = PluginRepository::find($key);
             $result->addArrayAttribute(
                 Result::ATTRIBUTE_ACTION_URL,
-                ['url' => $updateAction->getActionUrl($plugin), 'label' => 'Update ' . $pluginName]
+                ['url' => $updateAction->getActionUrl($plugin), 'label' => 'Update ' . $pluginName, 'type' => 'rest']
             );
         }
 

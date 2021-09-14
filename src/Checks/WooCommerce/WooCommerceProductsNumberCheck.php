@@ -2,8 +2,8 @@
 
 namespace Koality\WordPressPlugin\Checks\WooCommerce;
 
-use Koality\WordPressPlugin\Koality;
-use Leankoala\HealthFoundationBase\Check\Check;
+use Koality\WordPressPlugin\Checks\WordPressBasicCheck;
+use Koality\WordPressPlugin\Checks\WordPressCheck;
 use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
 use Leankoala\HealthFoundationBase\Check\Result;
 
@@ -16,16 +16,32 @@ use Leankoala\HealthFoundationBase\Check\Result;
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05
  */
-class WooCommerceProductsNumberCheck implements Check
+class WooCommerceProductsNumberCheck extends WordPressBasicCheck
 {
+    protected $configKey = 'koality_woocommerce_product_count';
+    protected $configDefaultValue = 1;
+
+    protected $resultKey = Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT;
+
+    protected $group = WordPressCheck::GROUP_BUSINESS;
+    protected $description = '';
+
+    protected $settings = [
+        [
+            'label' => 'Minimum number of products',
+            'required' => true,
+            'args' => ['min' => 0]
+        ]
+    ];
+
     /**
      * @inheritDoc
      */
-    public function run()
+    protected function doRun()
     {
         $productCount = $this->getProductCount();
 
-        $limit = get_option(Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY);
+        $limit = $this->getLimit();
 
         if ($limit > $productCount) {
             $result = new MetricAwareResult(
@@ -45,14 +61,6 @@ class WooCommerceProductsNumberCheck implements Check
         $result->setObservedValuePrecision(0);
 
         return $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIdentifier()
-    {
-        return 'WooCommerceOrderCheck';
     }
 
     /**

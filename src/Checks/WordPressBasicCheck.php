@@ -80,7 +80,7 @@ abstract class WordPressBasicCheck implements WordPressCheck
                 $page = 'koality_system_settings';
                 break;
             case WordPressCheck::GROUP_BUSINESS:
-                $page = 'koality_business_settings';
+                $page = 'koality_woocommerce_settings';
                 break;
             default:
                 $page = 'koality_' . $this->getGroup() . '_settings';

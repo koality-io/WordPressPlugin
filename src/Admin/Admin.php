@@ -166,7 +166,7 @@ class Admin
         $this->addSetting('koality_woocommerce_settings', 'koality_rush_hour_section', Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, 'Peak sales end (24h)', 'false', ['min' => 0, 'max' => 24]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, 'Minimum orders per hour (peak sales)', 'false', ['min' => 0]);
         $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, 'Minimum orders per hour (off-peak sales)', 'false', ['min' => 0]);
-        $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, 'Minimum number of products', 'false', ['min' => 0]);
+        // $this->addSetting('koality_woocommerce_settings', 'koality_general_section', Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, 'Minimum number of products', 'false', ['min' => 0]);
 
         foreach ($checkContainer->getSettings() as $setting) {
             $this->addSetting($setting['page'], $setting['section'], $setting['identifier'], $setting['label'], $setting['required'], $setting['args']);

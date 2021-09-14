@@ -47,7 +47,7 @@ class WordPressInsecureCheck extends WordPressBasicCheck
     {
         $status = $this->getSystemStatus();
 
-        $isOutdatedInsecure = (bool)$this->getLimit(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY);
+        $isOutdatedInsecure = (bool)$this->getLimit();
 
         if ($isOutdatedInsecure) {
             if (in_array($status, [self::STATUS_INSECURE, self::STATUS_OUTDATED])) {

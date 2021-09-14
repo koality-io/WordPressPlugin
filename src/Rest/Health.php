@@ -72,7 +72,7 @@ class Health
         // Business
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             $foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'plugins.groups.business');
-            $foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'plugins.groups.business');
+            // $foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'plugins.groups.business');
         }
 
         // Server

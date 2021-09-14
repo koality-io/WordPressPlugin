@@ -63,20 +63,10 @@ class Health
 
         $dataProtection = (bool)get_option(Koality::CONFIG_DATA_PROTECTION_KEY);
 
-        $uploadDir = wp_upload_dir()['basedir'];
-
-        // max disc usage 95%
-        $spaceUsedCheck = new SpaceUsedCheck();
-        $spaceUsedCheck->init(get_option(Koality::CONFIG_SYSTEM_SPACE_KEY), $uploadDir);
-
         // Business
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             $foundation->registerCheck(new WooCommerceOrderCheck(), Result::KOALITY_IDENTIFIER_ORDERS_TOO_FEW, '', 'plugins.groups.business');
-            // $foundation->registerCheck(new WooCommerceProductsNumberCheck(), Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT, '', 'plugins.groups.business');
-        }
-
-        // Server
-        $foundation->registerCheck($spaceUsedCheck, Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED, '', 'plugins.groups.server');
+         }
 
         $container = Koality::getWordPressChecks();
         $container->connect($foundation);

@@ -5,6 +5,7 @@ namespace Koality\WordPressPlugin;
 use Koality\WordPressPlugin\Admin\Admin;
 use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
+use Koality\WordPressPlugin\Checks\Server\SpaceUsedCheck;
 use Koality\WordPressPlugin\Checks\WooCommerce\WooCommerceProductsNumberCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressAdminUserCountCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressCommentsPendingCheck;
@@ -216,12 +217,17 @@ class Koality
     public static function initChecks(WordPressCheckContainer $container)
     {
         // Business
-        $container->addWordPressCheck(new WooCommerceProductsNumberCheck());
+        if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+            $container->addWordPressCheck(new WooCommerceProductsNumberCheck());
+        }
 
         // Security
         $container->addWordPressCheck(new WordPressInsecureCheck());
         $container->addWordPressCheck(new WordPressUpdatablePluginsCheck());
         $container->addWordPressCheck(new WordPressAdminUserCountCheck());
+
+        // Server
+        $container->addWordPressCheck(new SpaceUsedCheck());
 
         // Content
         $container->addWordPressCheck(new WordPressCommentsPendingCheck());

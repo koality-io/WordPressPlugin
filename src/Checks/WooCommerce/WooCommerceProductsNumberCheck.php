@@ -10,8 +10,7 @@ use Leankoala\HealthFoundationBase\Check\Result;
 /**
  * Class WordPressOrderCheck
  *
- * This check checks if there where enough orders within the last hour in the installed WooCommerce
- * shop.
+ * This check checks if there are enough active products in the shop.
  *
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05

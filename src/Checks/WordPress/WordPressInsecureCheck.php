@@ -2,20 +2,21 @@
 
 namespace Koality\WordPressPlugin\Checks\WordPress;
 
+use Koality\WordPressPlugin\Checks\WordPressBasicCheck;
+use Koality\WordPressPlugin\Checks\WordPressCheck;
 use Koality\WordPressPlugin\Koality;
-use Leankoala\HealthFoundationBase\Check\Check;
 use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
 use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
- * Class WordPressInsecureCheck
+ * Class WordPressCommentsPendingCheck
  *
- * This check checks if the currently installed WordPress version is insecure.
+ * Check if there are too many pending comments in the system.
  *
  * @author Nils Langner <nils.langner@leankoala.com>
- * created 2021-08-14
+ * created 2021-08-05
  */
-class WordPressInsecure implements Check
+class WordPressInsecureCheck extends WordPressBasicCheck
 {
     const API_ENDPOINT = 'https://api.wordpress.org/core/stable-check/1.0/';
 
@@ -23,25 +24,41 @@ class WordPressInsecure implements Check
     const STATUS_LATEST = 'latest';
     const STATUS_OUTDATED = 'outdated';
 
+    protected $configKey = 'koality_wordpress_system_insecure_outdated';
+    protected $configDefaultValue = 0;
+
+    protected $resultKey = Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE;
+
+    protected $group = WordPressCheck::GROUP_SECURITY;
+    protected $description = '';
+
+    protected $settings = [
+        [
+            'label' => 'Consider outdated WordPress versions as insecure',
+            'required' => true,
+            'args' => ['subtype' => 'checkbox']
+        ]
+    ];
+
     /**
      * @inheritDoc
      */
-    public function run()
+    protected function doRun()
     {
         $status = $this->getSystemStatus();
 
-        $isOutdatedInsecure = (bool)get_option(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY);
+        $isOutdatedInsecure = (bool)$this->getLimit(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY);
 
         if ($isOutdatedInsecure) {
             if (in_array($status, [self::STATUS_INSECURE, self::STATUS_OUTDATED])) {
                 $isFail = true;
-            }else{
+            } else {
                 $isFail = false;
             }
-        }else{
+        } else {
             if (in_array($status, [self::STATUS_INSECURE])) {
                 $isFail = true;
-            }else{
+            } else {
                 $isFail = false;
             }
         }
@@ -49,12 +66,12 @@ class WordPressInsecure implements Check
         if ($isFail) {
             $result = new MetricAwareResult(
                 Result::STATUS_FAIL,
-                'The WordPress version you are using is insecure (status: '.$status.')'
+                'The WordPress version you are using is insecure (status: ' . $status . ')'
             );
         } else {
             $result = new MetricAwareResult(
                 Result::STATUS_PASS,
-                'The WordPress version you are using is secure (status: '.$status.')'
+                'The WordPress version you are using is secure (status: ' . $status . ')'
             );
         }
 
@@ -71,9 +88,9 @@ class WordPressInsecure implements Check
      *
      * The method uses the official WordPress API for this check.
      *
+     * @return mixed
      * @todo the API call should be cached for 1 hour.
      *
-     * @return mixed
      */
     private function getSystemStatus()
     {
@@ -88,13 +105,5 @@ class WordPressInsecure implements Check
         }
 
         return $versions[$wp_version];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIdentifier()
-    {
-        return 'WordPressPluginsUpdatable';
     }
 }

@@ -5,8 +5,10 @@ namespace Koality\WordPressPlugin;
 use Koality\WordPressPlugin\Admin\Admin;
 use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressAdminUserCountCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressCommentsPendingCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressCommentsSpamCheck;
+use Koality\WordPressPlugin\Checks\WordPress\WordPressInsecureCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressUpdatablePluginsCheck;
 use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 
@@ -165,7 +167,7 @@ class Koality
     }
 
     /**
-     * Register all of the hooks related to the admin area functionality
+     * Register all the hooks related to the admin area functionality
      * of the plugin.
      *
      * @since    1.0.0
@@ -173,12 +175,7 @@ class Koality
      */
     private function define_admin_hooks()
     {
-
         $plugin_admin = new Admin($this->get_plugin_name(), $this->get_version());
-
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-
         $this->loader->add_action('admin_menu', $plugin_admin, 'menu_enrich');
     }
 
@@ -217,9 +214,14 @@ class Koality
 
     public static function initChecks(WordPressCheckContainer $container)
     {
+        // Security
+        $container->addWordPressCheck(new WordPressInsecureCheck());
+        $container->addWordPressCheck(new WordPressUpdatablePluginsCheck());
+        $container->addWordPressCheck(new WordPressAdminUserCountCheck());
+
+        // Content
         $container->addWordPressCheck(new WordPressCommentsPendingCheck());
         $container->addWordPressCheck(new WordPressCommentsSpamCheck());
-        $container->addWordPressCheck(new WordPressUpdatablePluginsCheck());
     }
 
     public static function getWordPressChecks()

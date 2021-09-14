@@ -28,7 +28,8 @@ class WordPressCommentsSpamCheck extends WordPressBasicCheck
     protected $settings = [
         [
             'label' => 'Maximum number of spam comments',
-            'required' => true
+            'required' => true,
+            'args' => ['min' => 0]
         ]
     ];
 

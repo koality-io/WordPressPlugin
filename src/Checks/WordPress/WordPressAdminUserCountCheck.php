@@ -2,29 +2,45 @@
 
 namespace Koality\WordPressPlugin\Checks\WordPress;
 
-use Koality\WordPressPlugin\Koality;
-use Leankoala\HealthFoundationBase\Check\Check;
+use Koality\WordPressPlugin\Checks\WordPressBasicCheck;
+use Koality\WordPressPlugin\Checks\WordPressCheck;
 use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
 use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
- * Class WordPressInsecureCheck
+ * Class WordPressCommentsPendingCheck
  *
- * This check checks if the currently installed WordPress version is insecure.
+ * Check if there are too many pending comments in the system.
  *
  * @author Nils Langner <nils.langner@leankoala.com>
- * created 2021-08-14
+ * created 2021-08-05
  */
-class WordPressAdminUserCount implements Check
+class WordPressAdminUserCountCheck extends WordPressBasicCheck
 {
+    protected $configKey = 'koality_wordpress_system_admin_count';
+    protected $configDefaultValue = 1;
+
+    protected $resultKey = Result::KOALITY_IDENTIFIER_SECURITY_USERS_ADMIN_COUNT;
+
+    protected $group = WordPressCheck::GROUP_SECURITY;
+    protected $description = '';
+
+    protected $settings = [
+        [
+            'label' => 'Maximum number of administrators (users)',
+            'required' => true,
+            'args' => ['min' => 0]
+        ]
+    ];
+
     /**
      * @inheritDoc
      */
-    public function run()
+    protected function doRun()
     {
         $adminCount = $this->getAdministratorCount();
 
-        $maxAdmin = (int)get_option(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY);
+        $maxAdmin = (int)$this->getLimit();
 
         if ($adminCount > $maxAdmin) {
             $result = new MetricAwareResult(
@@ -53,15 +69,7 @@ class WordPressAdminUserCount implements Check
      */
     private function getAdministratorCount()
     {
-        $administrators = get_users( array( 'role__in' => array( 'administrator' ) ) );
+        $administrators = get_users(array('role__in' => array('administrator')));
         return count($administrators);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIdentifier()
-    {
-        return 'WordPressAdminUserCount';
     }
 }

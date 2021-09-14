@@ -87,12 +87,13 @@ abstract class WordPressBasicCheck implements WordPressCheck
         }
 
         foreach ($this->settings as $setting) {
-            $newSettings = array_merge($setting, [
+
+            $newSettings = array_merge([
                 'page' => $page,
                 'identifier' => $this->getConfigKey(),
                 'section' => 'koality_general_section',
                 'args' => []
-            ]);
+            ], $setting);
 
             if (array_key_exists('required', $newSettings)) {
                 if ($newSettings['required']) {

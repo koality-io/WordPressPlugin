@@ -75,54 +75,6 @@ class Admin
         require_once 'partials/widget.php';
     }
 
-    /**
-     * Register the stylesheets for the admin area.
-     *
-     * @since    1.0.0
-     */
-    public function enqueue_styles()
-    {
-
-        /**
-         * This function is provided for demonstration purposes only.
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Koality_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Koality_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
-
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/koality-admin.css', array(), $this->version, 'all');
-
-    }
-
-    /**
-     * Register the JavaScript for the admin area.
-     *
-     * @since    1.0.0
-     */
-    public function enqueue_scripts()
-    {
-
-        /**
-         * This function is provided for demonstration purposes only.
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Koality_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Koality_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
-
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/koality-admin.js', array('jquery'), $this->version, false);
-
-    }
-
     public function menu_enrich()
     {
         add_menu_page($this->plugin_name, 'koality.io', 'administrator', $this->plugin_name, array($this, 'displayPluginAdminDashboard'), 'dashicons-chart-area', 26);
@@ -202,9 +154,9 @@ class Admin
         $this->addSetting('koality_general_settings', 'koality_general_section', Koality::CONFIG_DATA_PROTECTION_KEY, 'Hide detailed data', 'false', ['subtype' => 'checkbox']);
 
         // Security settings
-        $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, 'Consider outdated WordPress versions as insecure', 'false', ['subtype' => 'checkbox']);
+        // $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, 'Consider outdated WordPress versions as insecure', 'false', ['subtype' => 'checkbox']);
         // $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_PLUGINS_OUTDATED_KEY, 'Maximum number of outdated plugins', 'false', ['min' => 0]);
-        $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, 'Maximum number of administrators (users)', 'false', ['min' => 0]);
+        // $this->addSetting('koality_security_settings', 'koality_security_section', Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, 'Maximum number of administrators (users)', 'false', ['min' => 0]);
 
         // Server settings
         $this->addSetting('koality_server_settings', 'koality_general_section', Koality::CONFIG_SYSTEM_SPACE_KEY, 'Maximum space usage (%)', 'false', ['min' => 0, 'max' => 100]);
@@ -269,13 +221,14 @@ class Admin
                     $prependStart = (isset($args['prepend_value'])) ? '<div class="input-prepend"> <span class="add-on">' . esc_attr($args['prepend_value']) . '</span>' : '';
                     $prependEnd = (isset($args['prepend_value'])) ? '</div>' : '';
                     $step = (isset($args['step'])) ? 'step="' . $args['step'] . '"' : '';
-                    $min = (isset($args['min'])) ? 'min="' . $args['min'] . '"' : '';
-                    $max = (isset($args['max'])) ? 'max="' . $args['max'] . '"' : '';
+                    $min = (isset($args['min'])) ? 'min="' . (int)$args['min'] . '"' : '';
+                    $max = (isset($args['max'])) ? 'max="' . (int)$args['max'] . '"' : '';
+
                     if (isset($args['disabled'])) {
                         // hide the actual input bc if it was just a disabled input the information saved in the database would be wrong - bc it would pass empty values and wipe the actual information
-                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '_disabled" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '_disabled" size="40" disabled value="' . esc_attr($value) . '" /><input type="hidden" id="' . esc_attr($args['id']) . '" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '_disabled" ' . esc_attr($step) . ' ' . $max . ' ' . $min . ' name="' . esc_attr($args['name']) . '_disabled" size="40" disabled value="' . esc_attr($value) . '" /><input type="hidden" id="' . esc_attr($args['id']) . '" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
                     } else {
-                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '" "' . esc_attr($args['required']) . '" ' . esc_attr($step) . ' ' . esc_attr($max) . ' ' . esc_attr($min) . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
+                        echo $prependStart . '<input type="' . esc_attr($args['subtype']) . '" id="' . esc_attr($args['id']) . '" "' . esc_attr($args['required']) . '" ' . esc_attr($step) . ' ' . $max . ' ' . $min . ' name="' . esc_attr($args['name']) . '" size="40" value="' . esc_attr($value) . '" />' . $prependEnd;
                     }
 
                 } else {

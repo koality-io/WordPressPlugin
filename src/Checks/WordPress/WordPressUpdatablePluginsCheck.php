@@ -33,7 +33,8 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
     protected $settings = [
         [
             'label' => 'Maximum number of updatable plugins',
-            'required' => true
+            'required' => true,
+            'args' => ['min' => 0]
         ]
     ];
 

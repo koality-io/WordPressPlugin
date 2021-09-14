@@ -78,11 +78,6 @@ class Health
         // Server
         $foundation->registerCheck($spaceUsedCheck, Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED, '', 'plugins.groups.server');
 
-        // Security
-        $foundation->registerCheck(new WordPressInsecure(), Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE, '', 'plugins.groups.security');
-        // $foundation->registerCheck(new WordPressPlugins(), Result::KOALITY_IDENTIFIER_PLUGINS_UPDATABLE, '', 'plugins.groups.security');
-        $foundation->registerCheck(new WordPressAdminUserCount(), Result::KOALITY_IDENTIFIER_SECURITY_USERS_ADMIN_COUNT, '', 'plugins.groups.security');
-
         $container = Koality::getWordPressChecks();
         $container->connect($foundation);
 

@@ -6,6 +6,7 @@
 - Magic login link
 - How to "build own checks"
 - How to "integrate in other plugins"
+- Alert .htaccess changes
 - Actions:
   - Empty trash
   - Empty spam

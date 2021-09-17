@@ -19,7 +19,7 @@ class SpaceUsedCheck extends WordPressBasicCheck
     protected $configKey = 'koality_system_space';
     protected $configDefaultValue = 95;
 
-    protected $resultKey = Result::KOALITY_IDENTIFIER_SERVER_DICS_SPACE_USED;
+    protected $resultKey = Result::KOALITY_IDENTIFIER_SERVER_DISC_SPACE_USED;
 
     protected $group = WordPressCheck::GROUP_SERVER;
     protected $description = '';

@@ -31,6 +31,7 @@
 // If this file is called directly, abort.
 use Koality\WordPressPlugin\Koality;
 use Koality\WordPressPlugin\Rest\Actions\Plugins\UpdatePluginAction;
+use Koality\WordPressPlugin\Rest\Actions\Server\UpdateHtaccessHashAction;
 use Koality\WordPressPlugin\Rest\Health;
 use Koality\WordPressPlugin\Rest\Redirect;
 
@@ -96,6 +97,9 @@ function run_koality()
 
     $updateAction = new UpdatePluginAction();
     $updateAction->addActions();
+
+    $updateHashAction = new UpdateHtaccessHashAction();
+    // $updateHashAction->addActions();
 }
 
 run_koality();

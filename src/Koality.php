@@ -5,6 +5,7 @@ namespace Koality\WordPressPlugin;
 use Koality\WordPressPlugin\Admin\Admin;
 use Koality\WordPressPlugin\Basic\I18n;
 use Koality\WordPressPlugin\Basic\Loader;
+use Koality\WordPressPlugin\Checks\Server\HtaccessChangesCheck;
 use Koality\WordPressPlugin\Checks\Server\SpaceUsedCheck;
 use Koality\WordPressPlugin\Checks\WooCommerce\WooCommerceProductsNumberCheck;
 use Koality\WordPressPlugin\Checks\WordPress\WordPressAdminUserCountCheck;
@@ -228,6 +229,7 @@ class Koality
 
         // Server
         $container->addWordPressCheck(new SpaceUsedCheck());
+        $container->addWordPressCheck(new HtaccessChangesCheck());
 
         // Content
         $container->addWordPressCheck(new WordPressCommentsPendingCheck());

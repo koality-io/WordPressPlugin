@@ -20,4 +20,13 @@ abstract class Options
     {
         return get_option($key);
     }
+
+    static public function set($key, $value)
+    {
+        if (self::get($key)) {
+            update_option($key, $value);
+        } else {
+            add_option($key, $value);
+        }
+    }
 }

@@ -11,7 +11,7 @@ if (!defined('WP_KOALITY_IO')) {
 }
 
 /**
- * Class UpdatePlugin
+ * Class UpdatePluginAction
  *
  * @package Koality\WordPressPlugin\Rest\Actions\Plugins
  *

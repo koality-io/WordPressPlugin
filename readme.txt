@@ -22,6 +22,7 @@ With the help of koality.io plugin, the WordPress site or WooCommerce store is m
 
 - Server
  - Inform if there is **no space left** on the device.
+ - Inform if the .htaccess changes.
 
 - Security
  - Inform if the installed WordPress version is **outdated or insecure**

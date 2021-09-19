@@ -83,8 +83,17 @@ For more information on "[How to install the WordPress plugin](https://www.koali
 
 == Changelog ==
 
-= 1.0.0 =
- Initial version of the koality.io WordPress plugin. It creates data for the koality.io backend and will allow the monitoring tool to alert if any anomalies are found.
+= 1.3.0 =
+
+ It is possible to enable and disable single checks on the configurations page.
+
+= 1.2.0 =
+
+ New checks for the .htaccess file, that finds changes in it. Added actions to the checks so same things can already be triggered from the koality.io backend.
 
 = 1.1.0 =
  Checks for comments. Alerts if there are too many pending comments and too many spam comments.
+
+= 1.0.0 =
+ Initial version of the koality.io WordPress plugin. It creates data for the koality.io backend and will allow the monitoring tool to alert if any anomalies are found.
+

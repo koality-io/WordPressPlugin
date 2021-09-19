@@ -31,6 +31,7 @@ class WordPressInsecureCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_SECURITY;
     protected $description = '';
+    protected $name = 'WordPress version insecure';
 
     protected $settings = [
         [

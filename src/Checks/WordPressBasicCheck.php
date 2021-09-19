@@ -4,13 +4,11 @@ namespace Koality\WordPressPlugin\Checks;
 
 use Koality\WordPressPlugin\Rest\Redirect;
 use Leankoala\HealthFoundationBase\Check\Action;
-use Leankoala\HealthFoundationBase\Check\Result;
 
 /**
- * Class WordPressOrderCheck
+ * Class WordPressBasicCheck
  *
- * This check checks if there where enough orders within the last hour in the installed WooCommerce
- * shop.
+ * Base class for most of the checks.
  *
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05
@@ -23,11 +21,14 @@ abstract class WordPressBasicCheck implements WordPressCheck
     protected $group = WordPressCheck::GROUP_CONTENT;
     protected $description = '';
     protected $configDefaultValue = 0;
+    protected $name = '';
 
     protected $settings = [];
 
     protected $target = false;
     protected $targetLabel = "";
+
+    protected $enabledByDefault = true;
 
     public function getConfigKey()
     {
@@ -138,8 +139,42 @@ abstract class WordPressBasicCheck implements WordPressCheck
         return $result;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
     /**
-     * @return Result
+     * @inheritDoc
      */
     abstract protected function doRun();
+
+    /**
+     * @inheritDoc
+     */
+    public function getGroupAsString()
+    {
+        switch ($this->getGroup()) {
+            case WordPressCheck::GROUP_BUSINESS:
+                return 'Business';
+            case WordPressCheck::GROUP_SECURITY:
+                return 'Security';
+            case WordPressCheck::GROUP_SYSTEM:
+                return 'System';
+            case WordPressCheck::GROUP_CONTENT:
+                return 'Content';
+            case WordPressCheck::GROUP_SERVER:
+                return 'Server';
+            default:
+                return $this->getGroup();
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isEnabledByDefault()
+    {
+        return $this->enabledByDefault;
+    }
 }

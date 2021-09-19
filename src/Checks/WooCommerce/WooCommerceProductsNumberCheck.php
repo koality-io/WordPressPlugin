@@ -24,6 +24,7 @@ class WooCommerceProductsNumberCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_BUSINESS;
     protected $description = '';
+    protected $name = 'WooCommerce number of products';
 
     protected $settings = [
         [

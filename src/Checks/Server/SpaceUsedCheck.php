@@ -23,6 +23,7 @@ class SpaceUsedCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_SERVER;
     protected $description = '';
+    protected $name = 'Space used check';
 
     protected $settings = [
         [

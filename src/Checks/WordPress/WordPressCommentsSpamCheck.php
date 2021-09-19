@@ -24,6 +24,7 @@ class WordPressCommentsSpamCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_CONTENT;
     protected $description = '';
+    protected $name = 'Number of spam comments';
 
     protected $settings = [
         [

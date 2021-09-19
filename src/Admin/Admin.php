@@ -4,6 +4,7 @@ namespace Koality\WordPressPlugin\Admin;
 
 use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 use Koality\WordPressPlugin\Koality;
+use Koality\WordPressPlugin\WordPress\Options;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -27,6 +28,8 @@ use Koality\WordPressPlugin\Koality;
  */
 class Admin
 {
+    const ENABLED_KEY = 'koality_enabled';
+
     private $knownSections = [];
 
     /**
@@ -79,6 +82,8 @@ class Admin
     {
         add_menu_page($this->plugin_name, 'koality.io', 'administrator', $this->plugin_name, array($this, 'displayPluginAdminDashboard'), 'dashicons-chart-area', 26);
 
+        add_submenu_page($this->plugin_name, 'Configuration', 'Configuration', 'administrator', 'checks', array($this, 'displayChecks'));
+
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             add_submenu_page($this->plugin_name, 'WooCommerce Monitoring', 'WooCommerce Monitoring', 'administrator', $this->plugin_name . '-settings-woocommerce', array($this, 'displayWooCommerceSettings'));
         }
@@ -92,6 +97,29 @@ class Admin
     public function displayServerSettings()
     {
         require_once 'partials/settings-server.php';
+    }
+
+    public function displayChecks()
+    {
+        if (isset($_POST) && array_key_exists(self::ENABLED_KEY, $_POST)) {
+            Options::set(self::ENABLED_KEY, $_POST[self::ENABLED_KEY]);
+        }
+
+        $enabledChecks = Options::get(self::ENABLED_KEY);
+
+        if (!$enabledChecks) {
+            $enabledChecks = [];
+        }
+
+        $checkContainer = Koality::getWordPressChecks();
+
+        $checks = [];
+
+        foreach ($checkContainer->getChecks() as $check) {
+            $checks[$check->getGroupAsString()][] = $check;
+        }
+
+        require_once 'partials/checks.php';
     }
 
     public function displayWooCommerceSettings()
@@ -142,7 +170,6 @@ class Admin
 
     private function addSettings(WordPressCheckContainer $checkContainer)
     {
-
         // Sections with description
         $this->addSection('koality_rush_hour_section', 'koality_woocommerce_settings', 'Peak sales handling', 'The koality.io WordPress plugin is able to monitor WooCommerce business metrics. It distinguishes between peak sales times and off-peak sales times.');
         $this->addSection('koality_general_section', 'koality_woocommerce_settings', 'Business metrics');

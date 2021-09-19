@@ -29,6 +29,7 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_SECURITY;
     protected $description = '';
+    protected $name = 'Number of updatable plugins';
 
     protected $settings = [
         [

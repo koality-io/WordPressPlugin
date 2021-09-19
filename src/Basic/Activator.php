@@ -2,7 +2,10 @@
 
 namespace Koality\WordPressPlugin\Basic;
 
+use Koality\WordPressPlugin\Admin\Admin;
+use Koality\WordPressPlugin\Checks\WordPressCheckContainer;
 use Koality\WordPressPlugin\Koality;
+use Koality\WordPressPlugin\WordPress\Options;
 
 /**
  * Fired during plugin activation
@@ -41,26 +44,34 @@ class Activator
 
         self::addSetting(Koality::CONFIG_DATA_PROTECTION_KEY, Koality::CONFIG_DATA_PROTECTION_VALUE);
 
-        // Server
-        self::addSetting(Koality::CONFIG_SYSTEM_SPACE_KEY, Koality::CONFIG_SYSTEM_SPACE_VALUE);
-
         // WooCommerce
         self::addSetting(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_START_VALUE);
         self::addSetting(Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_KEY, Koality::CONFIG_WOOCOMMERCE_RUSH_HOUR_END_VALUE);
         self::addSetting(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_VALUE);
         self::addSetting(Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_KEY, Koality::CONFIG_WOOCOMMERCE_ORDER_PEAK_OFF_VALUE);
-        self::addSetting(Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_KEY, Koality::CONFIG_WOOCOMMERCE_PRODUCT_COUNT_VALUE);
-
-        // WordPress
-        self::addSetting(Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_KEY, Koality::CONFIG_WORDPRESS_INSECURE_OUTDATED_VALUE);
-        self::addSetting(Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_KEY, Koality::CONFIG_SYSTEM_PLUGINS_OUTDATED_VALUE);
-        self::addSetting(Koality::CONFIG_WORDPRESS_ADMIN_COUNT_KEY, Koality::CONFIG_WORDPRESS_ADMIN_COUNT_VALUE);
 
         $container = Koality::getWordPressChecks();
+
+        self::enableChecks($container);
 
         foreach ($container->getChecks() as $check) {
             self::addSetting($check->getConfigKey(), $check->getConfigDefaultValue());
         }
+    }
+
+    static private function enableChecks(WordPressCheckContainer $container)
+    {
+        $enabledChecks = Options::get(Admin::ENABLED_KEY);
+
+        foreach ($container->getChecks() as $check) {
+            if (!array_key_exists($check->getIdentifier(), $enabledChecks)) {
+                if ($check->isEnabledByDefault()) {
+                    $enabledChecks[$check->getIdentifier()] = 'on';
+                }
+            }
+        }
+
+        Options::set(Admin::ENABLED_KEY, $enabledChecks);
     }
 
     private static function addSetting($key, $value)

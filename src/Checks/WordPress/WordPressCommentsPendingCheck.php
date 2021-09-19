@@ -24,6 +24,7 @@ class WordPressCommentsPendingCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_CONTENT;
     protected $description = '';
+    protected $name = 'Number of pending comments';
 
     protected $settings = [
         [

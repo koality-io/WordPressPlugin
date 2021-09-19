@@ -24,6 +24,7 @@ class WordPressAdminUserCountCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_SECURITY;
     protected $description = '';
+    protected $name = 'Number of admin user';
 
     protected $settings = [
         [

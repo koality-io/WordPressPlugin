@@ -15,6 +15,8 @@ use Leankoala\HealthFoundationBase\Check\Result;
  *
  * Check if there was a change in the htaccess file.
  *
+ * It also comes with an action to update the files hash in the database.
+ *
  * @author Nils Langner <nils.langner@leankoala.com>
  * created 2021-08-05
  */
@@ -24,6 +26,9 @@ class HtaccessChangesCheck extends WordPressBasicCheck
 
     protected $group = WordPressCheck::GROUP_SERVER;
     protected $description = '';
+    protected $name = '.htaccess change';
+
+    protected $enabledByDefault = false;
 
     /**
      * @inheritDoc
@@ -43,7 +48,7 @@ class HtaccessChangesCheck extends WordPressBasicCheck
 
             $action = new UpdateHtaccessHashAction();
 
-            $result->addAction(new Action('Mark current .htaccess as valid', $action->getActionUrl(),));
+            $result->addAction(new Action('Mark current .htaccess as valid', $action->getActionUrl(), Action::TYPE_REST));
 
         } else {
             $result = new MetricAwareResult(

@@ -55,11 +55,25 @@ interface WordPressCheck extends Check
     public function getGroup();
 
     /**
+     * Return the group name as an human readable string.
+     *
+     * @return string
+     */
+    public function getGroupAsString();
+
+    /**
      * Return the description for the check.
      *
-     * @return mixed
+     * @return string
      */
     public function getDescription();
+
+    /**
+     * Return the name for the check.
+     *
+     * @return string
+     */
+    public function getName();
 
     /**
      * Return the settings of the check.
@@ -67,4 +81,18 @@ interface WordPressCheck extends Check
      * @return array
      */
     public function getSettings();
+
+    /**
+     * Return the unique identifier for the check.
+     *
+     * @return mixed
+     */
+    public function getIdentifier();
+
+    /**
+     * Return true if the check is enabled by default
+     *
+     * @return mixed
+     */
+    public function isEnabledByDefault();
 }

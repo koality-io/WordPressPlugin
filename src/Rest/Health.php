@@ -69,6 +69,7 @@ class Health
          }
 
         $container = Koality::getWordPressChecks();
+
         $container->connect($foundation);
 
         $runResult = $foundation->runHealthCheck();

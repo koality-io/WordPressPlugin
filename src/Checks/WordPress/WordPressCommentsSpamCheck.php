@@ -23,7 +23,7 @@ class WordPressCommentsSpamCheck extends WordPressBasicCheck
     protected $resultKey = 'comments.spam';
 
     protected $group = WordPressCheck::GROUP_CONTENT;
-    protected $description = '';
+    protected $description = 'This check alerts if the number of spam comments in the WordPress blog is greater than a defined threshold.';
     protected $name = 'Number of spam comments';
 
     protected $settings = [

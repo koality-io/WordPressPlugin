@@ -28,7 +28,7 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_PLUGINS_UPDATABLE;
 
     protected $group = WordPressCheck::GROUP_SECURITY;
-    protected $description = '';
+    protected $description = 'Check if the number of plugins that need an update is greater than a defined threshold. In many cases WordPress blogs get hacked by the plugins and not WordPress itself.';
     protected $name = 'Number of updatable plugins';
 
     protected $settings = [

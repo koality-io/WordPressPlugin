@@ -4,7 +4,6 @@ namespace Koality\WordPressPlugin\Checks\WordPress;
 
 use Koality\WordPressPlugin\Checks\WordPressBasicCheck;
 use Koality\WordPressPlugin\Checks\WordPressCheck;
-use Koality\WordPressPlugin\Koality;
 use Leankoala\HealthFoundationBase\Check\MetricAwareResult;
 use Leankoala\HealthFoundationBase\Check\Result;
 
@@ -30,7 +29,7 @@ class WordPressInsecureCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE;
 
     protected $group = WordPressCheck::GROUP_SECURITY;
-    protected $description = '';
+    protected $description = 'Check if the current WordPress version is outdated. It is possible to decide if an outdated version is also considered as insecure.';
     protected $name = 'WordPress version insecure';
 
     protected $settings = [

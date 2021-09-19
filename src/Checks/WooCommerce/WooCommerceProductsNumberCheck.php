@@ -23,7 +23,7 @@ class WooCommerceProductsNumberCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_PRODUCTS_COUNT;
 
     protected $group = WordPressCheck::GROUP_BUSINESS;
-    protected $description = '';
+    protected $description = 'Check if the number of products in the WooCommerce store is high enough. Sometime when an import fails there are missing products and this check will help find that problem. ';
     protected $name = 'WooCommerce number of products';
 
     protected $settings = [

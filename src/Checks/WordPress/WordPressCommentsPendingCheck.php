@@ -23,7 +23,7 @@ class WordPressCommentsPendingCheck extends WordPressBasicCheck
     protected $resultKey = 'comments.pending';
 
     protected $group = WordPressCheck::GROUP_CONTENT;
-    protected $description = '';
+    protected $description = 'This check alerts if the number of pending comments in the WordPress blog is greater than a defined threshold.';
     protected $name = 'Number of pending comments';
 
     protected $settings = [

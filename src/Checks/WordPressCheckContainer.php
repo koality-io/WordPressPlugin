@@ -2,6 +2,8 @@
 
 namespace Koality\WordPressPlugin\Checks;
 
+use Koality\WordPressPlugin\Admin\Admin;
+use Koality\WordPressPlugin\WordPress\Options;
 use Leankoala\HealthFoundationBase\HealthFoundation;
 
 /**
@@ -24,10 +26,14 @@ class WordPressCheckContainer
         $this->checks[] = $check;
     }
 
-    public function connect(HealthFoundation $foundation)
+    public function connect(HealthFoundation $foundation, $filterDisabled = true)
     {
+        $enabledChecks = Options::get(Admin::ENABLED_KEY);
+
         foreach ($this->checks as $check) {
-            $foundation->registerCheck($check, $check->getResultKey(), $check->getDescription(), $check->getGroup());
+            if (!$filterDisabled || array_key_exists($check->getIdentifier(), $enabledChecks)) {
+                $foundation->registerCheck($check, $check->getResultKey(), $check->getDescription(), $check->getGroup());
+            }
         }
     }
 

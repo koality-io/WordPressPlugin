@@ -25,7 +25,7 @@ class HtaccessChangesCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_SERVER_HTACCESS_CHANGE;
 
     protected $group = WordPressCheck::GROUP_SERVER;
-    protected $description = '';
+    protected $description = 'Check if the .htaccess file got changed. Often there are attacks on WordPress that add redirects to other websites.';
     protected $name = '.htaccess change';
 
     protected $enabledByDefault = false;

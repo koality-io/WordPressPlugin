@@ -22,7 +22,7 @@ class SpaceUsedCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_SERVER_DISC_SPACE_USED;
 
     protected $group = WordPressCheck::GROUP_SERVER;
-    protected $description = '';
+    protected $description = 'Check if there is enough space on the disc left.';
     protected $name = 'Space used check';
 
     protected $settings = [

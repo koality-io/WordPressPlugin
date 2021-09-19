@@ -23,7 +23,7 @@ class WordPressAdminUserCountCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_SECURITY_USERS_ADMIN_COUNT;
 
     protected $group = WordPressCheck::GROUP_SECURITY;
-    protected $description = '';
+    protected $description = 'Check if the number of users with the role administrator is too high. Often WordPress gets attacked by injecting a new admin user that can see and change all data within the project.';
     protected $name = 'Number of admin user';
 
     protected $settings = [

@@ -101,8 +101,11 @@ class Admin
 
     public function displayChecks()
     {
+        $stored = false;
+
         if (isset($_POST) && array_key_exists(self::ENABLED_KEY, $_POST)) {
             Options::set(self::ENABLED_KEY, $_POST[self::ENABLED_KEY]);
+            $stored = true;
         }
 
         $enabledChecks = Options::get(self::ENABLED_KEY);

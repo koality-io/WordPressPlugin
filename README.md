@@ -2,11 +2,16 @@
 
 ## Ideas
 
-- Activate and deactivate checks
 - Magic login link
 - How to "build own checks"
 - How to "integrate in other plugins"
-- Alert .htaccess changes
+  - ~~Activate and deactivate checks~~
+
+## Possible checks
+
+- ~~Alert .htaccess changes~~
+
+## Possible actions
 - Actions:
   - Empty trash
   - Empty spam

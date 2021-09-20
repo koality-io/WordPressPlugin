@@ -165,6 +165,8 @@ abstract class WordPressBasicCheck implements WordPressCheck
                 return 'Content';
             case WordPressCheck::GROUP_SERVER:
                 return 'Server';
+            case WordPressCheck::GROUP_PLUGINS:
+                return 'Plugins';
             default:
                 return $this->getGroup();
         }

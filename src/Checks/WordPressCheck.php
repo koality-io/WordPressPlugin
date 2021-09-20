@@ -20,6 +20,7 @@ interface WordPressCheck extends Check
     const GROUP_SERVER = 'plugins.groups.server';
     const GROUP_CUSTOM = 'plugins.groups.custom';
     const GROUP_BUSINESS = 'plugins.groups.business';
+    const GROUP_PLUGINS = 'plugins.groups.plugins';
 
     /**
      * Return the WordPress internal settings key.

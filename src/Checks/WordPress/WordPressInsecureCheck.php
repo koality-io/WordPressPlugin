@@ -29,7 +29,7 @@ class WordPressInsecureCheck extends WordPressBasicCheck
     protected $resultKey = Result::KOALITY_IDENTIFIER_SYSTEM_INSECURE;
 
     protected $group = WordPressCheck::GROUP_SECURITY;
-    protected $description = 'Check if the current WordPress version is outdated. It is possible to decide if an outdated version is also considered as insecure.';
+    protected $description = 'Check if the current WordPress version is insecure. It is possible to decide if an outdated version is also considered as insecure.';
     protected $name = 'WordPress version insecure';
 
     protected $settings = [

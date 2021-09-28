@@ -78,11 +78,6 @@ class WordPressUpdatablePluginsCheck extends WordPressBasicCheck
             $action = new Action('Update ' . $pluginName, $updateAction->getActionUrl($plugin), Action::TYPE_REST);
             $action->setGroup('koality_wordpress_plugin_update');
             $result->addAction($action);
-
-            $plugin = PluginRepository::find($key);
-            $action = new Action('Ignore updates for ' . $pluginName, $updateAction->getActionUrl($plugin), Action::TYPE_REST);
-            $action->setGroup('koality_wordpress_plugin_ignore');
-            $result->addAction($action);
         }
 
         return $result;

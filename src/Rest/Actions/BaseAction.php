@@ -62,11 +62,13 @@ abstract class BaseAction implements Action
         }
     }
 
-    protected function returnSuccess($message)
+    protected function returnSuccess($message, $rerunCheck = false, $removeAction = false)
     {
         $data = [
             'status' => 'success',
-            'message' => $message
+            'message' => $message,
+            'rerunCheck' => $rerunCheck,
+            'removeAction' => $removeAction
         ];
 
         $restResponse = new \WP_REST_Response($data, 200);

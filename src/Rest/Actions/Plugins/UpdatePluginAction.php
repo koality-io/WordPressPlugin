@@ -46,7 +46,7 @@ class UpdatePluginAction extends BaseAction
 
         $plugin->update();
 
-        return $this->returnSuccess('Plugin successfully updated.');
+        return $this->returnSuccess('Plugin successfully updated.', true, true);
     }
 
     public function getActionUrl(Plugin $plugin)

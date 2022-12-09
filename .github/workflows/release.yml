@@ -47,6 +47,13 @@ jobs:
           find: "##KOALITY_VERSION##"
           replace: ${{ steps.get_version.outputs.VERSION }}
 
+      - name: Remove composer check
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          include: "vendor/composer"
+          find: "require __DIR__ . '/platform_check.php';"
+          replace: "// require __DIR__ . '/platform_check.php';"
+
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:

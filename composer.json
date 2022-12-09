@@ -10,14 +10,14 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7.4.0",
     "leankoala/healthfoundationbase": "dev-main",
     "leankoala/healthfoundationchecks": "dev-main",
     "ext-json": "*"
   },
   "config": {
     "platform": {
-      "php": "7.0"
+      "php": "7.4"
     }
   },
   "license": "MIT",

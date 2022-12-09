@@ -15,6 +15,11 @@
     "leankoala/healthfoundationchecks": "dev-main",
     "ext-json": "*"
   },
+  "config": {
+    "platform": {
+      "php": "7.0"
+    }
+  },
   "license": "MIT",
   "autoload": {
     "psr-4": {

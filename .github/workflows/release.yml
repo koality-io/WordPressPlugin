@@ -3,6 +3,9 @@
 
 name: Upload to WordPress.org
 
+env:
+  php_version: '7.4'
+
 on:
   release:
     types: [ released ]
@@ -14,6 +17,11 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.php_version }}
 
       - name: echo release
         run: echo $RELEASE

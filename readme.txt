@@ -8,8 +8,8 @@ License:           GPL-2.0+
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
 Text Domain:       koality
 Domain Path:       /languages
-Requires at least: 5.4
-Tested up to:      5.9.5
+Requires at least: 6.0.0
+Tested up to:      6.2.2
 Stable tag:        1.0.0
 
 == Description ==
@@ -83,6 +83,10 @@ For more information on "[How to install the WordPress plugin](https://www.koali
 4. WooCommerce Monitoring -  Settings in the WordPress backend to configure the WooCommerce settings.
 
 == Changelog ==
+
+= 1.4.0 =
+
+ Compatible with WordPress 6.
 
 = 1.3.0 =
 

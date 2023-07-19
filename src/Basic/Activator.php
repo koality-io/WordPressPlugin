@@ -63,6 +63,10 @@ class Activator
     {
         $enabledChecks = Options::get(Admin::ENABLED_KEY);
 
+        if (is_bool($enabledChecks)) {
+            return;
+        }
+
         foreach ($container->getChecks() as $check) {
             if (!array_key_exists($check->getIdentifier(), $enabledChecks)) {
                 if ($check->isEnabledByDefault()) {

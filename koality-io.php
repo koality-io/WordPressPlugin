@@ -24,7 +24,7 @@
  * Text Domain:       koality
  * Domain Path:       /languages
  * Requires at least: 5.4
- * Tested up to:      5.8
+ * Tested up to:      6.4.1
  * Stable tag:        1.0.0
  */
 
